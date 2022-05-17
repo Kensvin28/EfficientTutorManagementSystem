@@ -5,9 +5,10 @@ using namespace std;
 
 int main(){
     int choice;
-    cout << string(25, '=');
+    display_separator();
     cout << " eXcel Tuition Centre ";
-    cout << string(25, '=') << endl;
+    display_separator();
+    cout << endl;
     cout << "1. Add new tutor" << endl;
     cout << "2. Display all tutors" << endl;
     cout << "3. Search tutor" << endl;
