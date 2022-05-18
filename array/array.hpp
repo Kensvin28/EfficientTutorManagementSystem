@@ -1,0 +1,1 @@
+int get_tutor_array_size();
