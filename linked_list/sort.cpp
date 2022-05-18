@@ -1,46 +1,14 @@
-#include <data.hpp>
-#include <io.hpp>
-
-void sort() {
-	int choice;
-	Tutor* sort_node;
-	do {
-		display_separator();
-		cout << "Sort and Display Tutors";
-		cout << "1. Sort by ID";
-		cout << "2. Sort by Hourly Rate";
-		cout << "3. Sort by Rating";
-		cout << "0. Return";
-		cin >> choice;
-
-		Tutor* new_head = copy_list(head);
-
-		if (choice == 1) {
-			sort_node = merge_sort(new_head, 1);
-			print_sort_id(sort_node);
-		}
-		else if (choice == 2) {
-			sort_node = merge_sort(new_head, 2);
-			print_sort_hourly(sort_node);
-		}
-		else if (choice == 3) {
-			sort_node = merge_sort(new_head, 3);
-			print_sort_rating(sort_node);
-		}
-		else if (choice != 0) {
-			cout << "Invalid input!";
-		}
-	} while (choice >= 0 && choice <= 3);
-}
-
-Tutor* copy_list(Tutor* head) {
-	return recursive_copy(head, NULL);
-}
+#include "data.hpp"
+#include "display.hpp"
+#include <iostream>
+using namespace std;
+extern struct Tutor* head;
+extern struct Tutor* tail;
 
 Tutor* recursive_copy(Tutor* current_node, Tutor* previous_node) {
 	if (head == NULL) return head;
 
-	Tutor* new_node;
+	Tutor* new_node = head;
 	new_node->tutor_ID = current_node->tutor_ID;
 	new_node->name = current_node->name;
 	new_node->date_joined = current_node->date_joined;
@@ -69,27 +37,6 @@ Tutor* split(Tutor* head) {
 	return temp;
 }
 
-Tutor* merge_sort(Tutor* head, int type) {
-	if (!head || !head->next) return head;
-	
-	//modified
-	if (type >= 1 && type <= 3) {
-		Tutor* second = split(head);
-		head = merge_sort(head, type);
-		second = merge_sort(second, type);
-		switch (type) {
-		case 1:
-			merge_id(head, second);
-			break;
-		case 2:
-			merge_hourly(head, second);
-			break;
-		case 3:
-			merge_rating(head, second);
-		}
-	}
-}
-
 Tutor* merge_id(Tutor* first, Tutor* second) {
 	if (first == NULL) return second;
 	if (second == NULL) return first;
@@ -105,19 +52,6 @@ Tutor* merge_id(Tutor* first, Tutor* second) {
 		second->next->prev = second;
 		second->prev = NULL;
 		return second;
-	}
-}
-
-void print_sort_id(Tutor* head) {
-	Tutor* temp = head;
-	cout << "Printing tutor sorted by ID: ";
-	while (head) {
-		Tutor* current = head;
-		//change format later
-		cout << current->tutor_ID << " | " << current->name << " | " << current ->date_joined << " | " << current->date_terminated << " | " << current->hourly_rate << " | " << current->phone << " | " << current->address << " | " << current->centre_code << " | " << current->centre_name << " | " << current->subject_code << " | " << current->subject_name << " | " << current->rating;
-		//what is the purpose of this
-		temp = head;
-		head = head->next;
 	}
 }
 
@@ -139,19 +73,6 @@ Tutor* merge_hourly(Tutor* first, Tutor* second) {
 	}
 }
 
-void print_sort_hourly(Tutor* head) {
-	Tutor* temp = head;
-	cout << "Printing tutor sorted by ID: ";
-	while (head) {
-		Tutor* current = head;
-		//change format later
-		cout << current->tutor_ID << " | " << current->name << " | " << current->date_joined << " | " << current->date_terminated << " | " << current->hourly_rate << " | " << current->phone << " | " << current->address << " | " << current->centre_code << " | " << current->centre_name << " | " << current->subject_code << " | " << current->subject_name << " | " << current->rating;
-		//what is the purpose of this
-		temp = head;
-		head = head->next;
-	}
-}
-
 Tutor* merge_rating(Tutor* first, Tutor* second) {
 	if (first == NULL) return second;
 	if (second == NULL) return first;
@@ -170,9 +91,30 @@ Tutor* merge_rating(Tutor* first, Tutor* second) {
 	}
 }
 
-void print_sort_rating(Tutor* head) {
+Tutor* merge_sort(Tutor* head, int type) {
+	if (!head || !head->next) return head;
+
+	//modified
+	if (type >= 1 && type <= 3) {
+		Tutor* second = split(head);
+		head = merge_sort(head, type);
+		second = merge_sort(second, type);
+		switch (type) {
+		case 1:
+			merge_id(head, second);
+			break;
+		case 2:
+			merge_hourly(head, second);
+			break;
+		case 3:
+			merge_rating(head, second);
+		}
+	}
+}
+
+//can be combined into the display section
+void display_sorted(Tutor* head) {
 	Tutor* temp = head;
-	cout << "Printing tutor sorted by ID: ";
 	while (head) {
 		Tutor* current = head;
 		//change format later
@@ -181,4 +123,47 @@ void print_sort_rating(Tutor* head) {
 		temp = head;
 		head = head->next;
 	}
+}
+
+Tutor* copy_list(Tutor* head) {
+	return recursive_copy(head, NULL);
+}
+
+void sort() {
+	int choice;
+	Tutor* sort_node;
+	do {
+		display_separator();
+		cout << "Sort and Display Tutors";
+		display_separator();
+		cout << endl;
+		cout << "1. Sort by ID" << endl;
+		cout << "2. Sort by Hourly Rate" << endl;
+		cout << "3. Sort by Rating" << endl;
+		cout << "0. Return" << endl;
+		cout << "Choice: ";
+		cin >> choice;
+
+		Tutor* new_head = copy_list(head);
+
+		if (choice == 1) {
+			sort_node = merge_sort(new_head, 1);
+			cout << "Printing tutor sorted by ID: ";
+			display_sorted(sort_node);
+		}
+		else if (choice == 2) {
+			sort_node = merge_sort(new_head, 2);
+			cout << "Printing tutor sorted by hourly rate: ";
+			display_sorted(sort_node);
+		}
+		else if (choice == 3) {
+			sort_node = merge_sort(new_head, 3);
+			cout << "Printing tutor sorted by rating: ";
+			display_sorted(sort_node);
+		}
+		else if (choice != 0) {
+			cout << "Invalid input!";
+		}
+		cout << endl;
+	} while (choice < 0 && choice > 3);
 }

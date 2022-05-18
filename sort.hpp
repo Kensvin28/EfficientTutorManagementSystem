@@ -1,1 +1,0 @@
-void merge_sort(Tutor*, int);
