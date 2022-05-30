@@ -38,7 +38,7 @@ void search_by_tutor_id(int tutor_id) {
 }
 
 void search_by_tutor_rating(int rating) {
-    //TODO change so that it does not affect original data
+    //change so that it does not affect original data
     //merge_sort(head, 3);
     if (head == NULL) {
         cout << "Record with the rating of " << rating << " is not found" << endl;
