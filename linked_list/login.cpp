@@ -37,22 +37,31 @@ void insert_to_end(Staff* new_node)
 	}
 }
 
+int assign_id()
+{
+    if(tail == NULL)
+    {
+        return 1;
+    }else {
+        return tail->staff_id + 1;
+    }
+}
+
 void reg()
 {
-    int i = 1;
+    int i = 1, check = 0;
     int staff_id, centre_code;
     string staff_name, staff_position, staff_password;
     head = tail = NULL;
-    cout << "Staff Registration" << endl;
+    cout << "\nStaff Registration" << endl;
     display_separator();
     cout << endl;
     do{
-        cout << "Enter Staff ID: ";
-        cin >> staff_id;
+        int staff_id = assign_id();
+        cout << "Staff ID: " << staff_id << endl;
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
         cout << "Enter Staff Name: ";
         getline(cin, staff_name);
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');
         cout << "Enter Staff Position: ";
         getline(cin, staff_position);
         cout << "Enter Centre Code: ";
@@ -71,6 +80,7 @@ void reg()
         };
         Staff* new_node = add_new_staff_node(staff_id, staff_name, centre_code, staff_position, staff_password);
         insert_to_end(new_node);
+        cout << "\n" << staff_id << "| " << staff_name << "| " << centre_code << "| " << staff_position << "| " << staff_password << endl;
         cout << "Type 0 to end / other numbers to add more: ";
         cin >> i;
         if(i == 0)
@@ -116,7 +126,7 @@ int login_checker(int staff_id, string staff_password)
             }
             current_ptr = current_ptr->prev;
         }while(current_ptr != NULL);
-    }
+    } return 0;
 }
 
 void login()
@@ -125,37 +135,36 @@ void login()
     int staff_id;
     string staff_password;
 
-    while(flag == 0)
+    cout << "\nStaff Login" << endl;
+    display_separator();
+    cout << endl;
+    cout << "Staff ID: ";
+    cin >> staff_id;
+    cout << "Password: ";
+    cin >> staff_password;
+    flag = login_checker(staff_id, staff_password);
+    if(flag == 0)
     {
-        cout << "Staff Login" << endl;
-        display_separator();
-        cout << endl;
-        cout << "Staff ID: ";
-        cin >> staff_id;
-        cout << "Password: ";
-        cin >> staff_password;
-        flag = login_checker(staff_id, staff_password);
-        if(flag == 0)
-        {
-            cout << "Invalid Login Credentials. Please try again.";
-        }else{
-            cout << "Login Successful";
-            return;
-        }
+        cout << "Invalid Login Credentials. Please try again.";
+        login();
+    }else{
+        cout << "Login Successful\n\n";
+        return;
     }
+    
 }
 
 // void login_menu()
 // {
 //     int choice = 0;
 //     cout << "1. Login" << endl;
-//         cout << "2. Register" << endl;
-//         cout << "3. Exit" << endl;
-//         if (choice == 3)
-//         {
-//             cout << "Good bye";
-//             return 0;
-//         }else if (choice == 1) reg();
-//         else if (choice == 2) login();
-//         else cout << "Invalid input";
+//     cout << "2. Register" << endl;
+//     cout << "3. Exit" << endl;
+//     if (choice == 3)
+//     {
+//         cout << "Good bye";
+//         return;
+//     }else if (choice == 1) login();
+//     else if (choice == 2) reg();
+//     else cout << "Invalid input";
 // }
