@@ -176,7 +176,7 @@ void login()
         cin >> staff_password;
         flag = login_checker(staff_id, staff_password);
         //TODO remove login override
-        //flag = 1;
+        flag = 1;
         if(flag == 0)
         {
             cout << "Invalid Login Credentials. Please try again.";

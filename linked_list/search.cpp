@@ -92,6 +92,15 @@ void search_by_tutor_rating(int rating) {
     cout << "Record with the rating of " << rating << " is not found" << endl;
 }
 
+//validate choice
+void validate_search(int &choice) {
+    while (cin.fail()) {
+        cout << "Invalid input" << endl;
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    }
+}
+
 //search menu
 void search(){
     int choice;
@@ -107,20 +116,13 @@ void search(){
         cout << "0. Return to main menu" << endl;
         cin >> choice;
 
-        while(cin.fail()){
-            cout << "Invalid input" << endl;
-            cin >> choice;
-            cout << "1. Search tutor by tutor ID" << endl;
-            cout << "2. Search tutor by rating" << endl;
-            cout << "0. Return to main menu" << endl;
-        }
-
         if (choice == 1) {
             int id;
             do {
                 cout << "Input tutor ID to be searched: ";
                 cin >> id;
                 search_by_tutor_id(id);
+                validate_search(choice);
                 cout << "Type 1 to do another search or any other key to return: ";
                 cin >> choice;
             } while (choice == 1);
@@ -130,6 +132,7 @@ void search(){
             do {
                 cout << "Input tutor rating to be searched: ";
                 cin >> rating;
+                validate_search(choice);
                 search_by_tutor_rating(rating);
                 cout << "Type 1 to do another search or any other key to return: ";
                 cin >> choice;
@@ -138,4 +141,3 @@ void search(){
         cout << endl;
     } while(choice < 0 && choice > 2);
 }
-
