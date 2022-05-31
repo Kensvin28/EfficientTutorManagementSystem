@@ -15,6 +15,7 @@ int main(){
         cout << " eXcel Tuition Centre ";
         display_separator();
         cout << endl;
+        login();
         cout << "1. Add new tutor" << endl;
         cout << "2. Display all tutors" << endl;
         cout << "3. Search tutor" << endl;
@@ -36,7 +37,7 @@ int main(){
         else if (choice == 4) sort();
         //else if (choice == 5) modify();
         //else if (choice == 6) delete_tutor();
-        //else if (choice == 7) report();
+        else if (choice == 7) report();
         else cout << "Invalid input";
     } while (true);
     return 0;
