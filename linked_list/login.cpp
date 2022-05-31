@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <iomanip>
+#include <limits>
 #include "display.hpp"
 #include "data.hpp"
 extern struct Staff* head;
