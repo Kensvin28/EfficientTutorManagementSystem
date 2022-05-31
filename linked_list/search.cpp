@@ -45,8 +45,9 @@ void search_by_tutor_id(int tutor_id) {
 }
 
 void search_by_tutor_rating(int rating) {
-    //TODO change so that it does not affect original data
-    //merge_sort(head, 3);
+    //TODO change so that it does not affect original data, temp linked_list_size
+    //Tutor* new_head = copy_list(head);
+    merge_sort(head, 3);
 
     //if head points to null, list is empty 
     if (head == NULL) {
@@ -62,7 +63,7 @@ void search_by_tutor_rating(int rating) {
             //if match is found
             if (current->rating == rating) {
                 //display matching records
-                while (current->rating == rating) {
+                while (current != NULL && current->rating == rating) {
                     display_detailed_current(current);
                     current = current->next;
                 }
@@ -79,7 +80,7 @@ void search_by_tutor_rating(int rating) {
             //if match is found
             if (current->rating == rating) {
                 //display matching records
-                while (current->rating == rating) {
+                while (current->rating == rating && current != NULL) {
                     display_detailed_current(current);
                     current = current->prev;
                 }
@@ -93,7 +94,7 @@ void search_by_tutor_rating(int rating) {
 }
 
 //validate choice
-void validate_int(int &choice) {
+void validate_int() {
     while (cin.fail()) {
         cout << "Invalid input" << endl;
         cin.clear();
@@ -116,26 +117,30 @@ void search(){
         cout << "0. Return to main menu" << endl;
         cin >> choice;
 
+        //search tutor by tutor ID
         if (choice == 1) {
             int id;
             do {
                 cout << "Input tutor ID to be searched: ";
                 cin >> id;
                 search_by_tutor_id(id);
-                validate_int(choice);
+                validate_int();
                 cout << "Type 1 to do another search or any other key to return: ";
                 cin >> choice;
+                validate_int();
             } while (choice == 1);
         }
+        //search tutor by rating
         else if (choice == 2) {
             int rating;
             do {
                 cout << "Input tutor rating to be searched: ";
                 cin >> rating;
-                validate_int(choice);
+                validate_int();
                 search_by_tutor_rating(rating);
                 cout << "Type 1 to do another search or any other key to return: ";
                 cin >> choice;
+                validate_int();
             } while (choice == 1);
         }
         cout << endl;
