@@ -15,6 +15,7 @@ int main(){
         cout << " eXcel Tuition Centre ";
         display_separator();
         cout << endl;
+        reg();
         login();
         cout << "1. Add new tutor" << endl;
         cout << "2. Display all tutors" << endl;

@@ -49,6 +49,8 @@ void reg()
     do{
         cout << "Enter Staff ID: ";
         cin >> staff_id;
+        //TODO please add id validation
+        cin.clear();
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
         cout << "Enter Staff Name: ";
         getline(cin, staff_name);
@@ -77,7 +79,7 @@ void reg()
         {
             return;
         }
-    }while(i != 0);
+    }while(i != 0 || cin.fail());
 }
 
 int login_checker(int staff_id, string staff_password)
@@ -135,11 +137,13 @@ void login()
         cout << "Password: ";
         cin >> staff_password;
         flag = login_checker(staff_id, staff_password);
+        //TODO remove login override
+        //flag = 1;
         if(flag == 0)
         {
             cout << "Invalid Login Credentials. Please try again.";
         }else{
-            cout << "Login Successful";
+            cout << "Login Successful" << endl;
             return;
         }
     }
