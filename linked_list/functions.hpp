@@ -2,7 +2,7 @@
 #define FUNCTIONS_H
 
 void reg();
-void login();
+bool login();
 void add_new_tutor();
 void display();
 void search();

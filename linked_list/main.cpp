@@ -19,9 +19,10 @@ void main_menu() {
         display_separator();
         cout << endl;
 
+        //log in if not logged in
         if (!logged_in) {
             //reg();
-            login();
+            logged_in = login();
         }
 
         system("CLS");
@@ -41,7 +42,7 @@ void main_menu() {
         cin >> choice;
 
         if (choice == 8) {
-            cout << "Good bye";
+            cout << "Good bye!";
             return;
         }
 

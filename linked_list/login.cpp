@@ -144,7 +144,7 @@ int login_checker(int staff_id, string staff_password)
     return 0;
 }
 
-void login()
+bool login()
 {
     int flag = 0;
     int staff_id;
@@ -177,13 +177,14 @@ void login()
         flag = login_checker(staff_id, staff_password);
         //TODO remove login override
         flag = 1;
-        if(flag == 0)
+        if (flag == 0)
         {
             cout << "Invalid Login Credentials. Please try again.";
-        }else{
+        }
+        else {
             cout << "Login Successful" << endl;
-            return;
+            return true;
         }
     }
-    return;
+    return false;
 }
