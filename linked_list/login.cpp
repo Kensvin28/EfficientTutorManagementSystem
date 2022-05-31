@@ -78,7 +78,6 @@ void reg()
         } while ((centre_code < 1 && centre_code > 5) || cin.fail());
         cout << "Enter Password: ";
         cin >> staff_password;
-        // cin.ignore(numeric_limits<streamsize>::max(), '\n');
         //8 character or greater password validation
         while (staff_password.length() < 8)
         {
@@ -103,12 +102,13 @@ void reg()
 
 int login_checker(int staff_id, string staff_password)
 {
+    if (staff_head == NULL || staff_tail == NULL) {
+        cout << "Staff record is empty." << endl;
+        return 0;
+    }
+
     if(staff_id <= staff_tail->staff_id/2)
     {
-        if(staff_head == NULL)
-        {
-            return 0;
-        }
         Staff* current_ptr = staff_head;
         do{
             if(current_ptr->staff_id == staff_id)
@@ -116,16 +116,14 @@ int login_checker(int staff_id, string staff_password)
                 if (current_ptr->staff_password == staff_password)
                 {
                     return 1;
+                } else {
+                    cout << "Password not matching" << endl;
                 }
             }
             current_ptr = current_ptr->next;
         }while(current_ptr != NULL);
     }
     else {
-        if(staff_tail == NULL)
-        {
-            return 0;
-        }
         Staff* current_ptr = staff_tail;
         do{
             if(current_ptr->staff_id == staff_id)
@@ -134,10 +132,15 @@ int login_checker(int staff_id, string staff_password)
                 {
                     return 1;
                 }
+                else {
+                    cout << "Password not matching" << endl;
+                }
             }
             current_ptr = current_ptr->prev;
         }while(current_ptr != NULL);
     }
+
+    cout << "User ID not found" << endl;
     return 0;
 }
 
@@ -149,11 +152,26 @@ void login()
 
     while(flag == 0)
     {
-        cout << "\nStaff Login" << endl;
+        system("CLS");
+        display_separator();
+        cout << " eXcel Tuition Centre ";
+        display_separator();
+        cout << endl;
+
+        cout << "Staff Login" << endl;
         display_separator();
         cout << endl;
         cout << "Staff ID: ";
         cin >> staff_id;
+        while(cin.fail()){
+            cout << "Invalid input" << endl;
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+            cout << "Staff ID: ";
+            cin >> staff_id;
+        }
+
         cout << "Password: ";
         cin >> staff_password;
         flag = login_checker(staff_id, staff_password);

@@ -8,64 +8,26 @@ Tutor* tail;
 Staff* staff_head;
 Staff* staff_tail;
 
-// void login_menu()
-// {
-//     int choice = 0;
-//     cout << "1. Login" << endl;
-//     cout << "2. Register" << endl;
-//     cout << "3. Exit" << endl;
-//     cout << "Choice: ";
-//     cin >> choice;
-//     if (choice == 3)
-//     {
-//         cout << "Good bye";
-//         exit;
-//     }else if (choice == 1) {
-//         login();
-//     }else if (choice == 2) reg();
-//     else cout << "Invalid input";
-// }
-
-int main(){
-    // int choice = 0;
-    // do{
-    //     cout << "1. Login" << endl;
-    //     cout << "2. Register" << endl;
-    //     cout << "3. Exit" << endl;
-    //     cout << "Choice: ";
-    //     cin >> choice;
-    //     if (choice == 3)
-    //     {
-    //         cout << "Good bye";
-    //         exit;
-    //     }else if (choice == 1) {
-    //         int flag;
-    //         int staff_id;
-    //         string staff_password;
-    //         do
-    //         {
-    //             cout << "\nStaff Login" << endl;
-    //             display_separator();
-    //             cout << endl;
-    //             cout << "Staff ID: ";
-    //             cin >> staff_id;
-    //             cout << "Password: ";
-    //             cin >> staff_password;
-    //             flag = login_checker(staff_id, staff_password);
-    //         } while (flag == 0);
-    //     }else if (choice == 2) reg();
-    //     else cout << "Invalid input";
-    // }while (true);
-    
+void main_menu() {
     int choice;
+    bool logged_in = false;
     do {
         choice = 0;
+        system("CLS");
         display_separator();
         cout << " eXcel Tuition Centre ";
         display_separator();
-        reg();
-        login();
+        cout << endl;
 
+        if (!logged_in) {
+            //reg();
+            login();
+        }
+
+        system("CLS");
+        display_separator();
+        cout << " eXcel Tuition Centre ";
+        display_separator();
         cout << endl;
         cout << "1. Add new tutor" << endl;
         cout << "2. Display all tutors" << endl;
@@ -79,8 +41,10 @@ int main(){
         cin >> choice;
 
         if (choice == 8) {
-            // return 0
+            cout << "Good bye";
+            return;
         }
+
         //else if (choice == 1) add_new_tutor();
         //else if (choice == 2) display();
         else if (choice == 3) search();
@@ -88,8 +52,16 @@ int main(){
         //else if (choice == 5) modify();
         //else if (choice == 6) delete_tutor();
         else if (choice == 7) report();
-        else cout << "Invalid input";
+        else cout << "Invalid input!" << endl << endl;
     } while (true);
-    return 0;
 }
 
+void create_dummy_records() {
+    //Staff* new_node = add_new_staff_node(staff_id, staff_name, centre_code, staff_position, staff_password);
+    //insert_to_end(new_node);
+}
+
+int main() {
+    main_menu();
+    return 0;
+}
