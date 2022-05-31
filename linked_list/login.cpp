@@ -17,8 +17,8 @@ Staff* add_new_staff_node(int staff_id, string staff_name, int centre_code, stri
     new_node->centre_code = centre_code;
     new_node->staff_position = staff_position;
     new_node->staff_password = staff_password;
-    new_node->next;
-    new_node->prev;
+    new_node->next = NULL;
+    new_node->prev = NULL;
 
     return new_node;
 }
