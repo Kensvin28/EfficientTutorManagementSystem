@@ -4,8 +4,8 @@
 #include <limits>
 #include "display.hpp"
 #include "data.hpp"
-extern struct Staff* head;
-extern struct Staff* tail;
+extern struct Staff* staff_head;
+extern struct Staff* staff_tail;
 
 using namespace std;
 
@@ -25,15 +25,15 @@ Staff* add_new_staff_node(int staff_id, string staff_name, int centre_code, stri
 
 void insert_to_end(Staff* new_node)
 {
-	if (head == NULL)
+	if (staff_head == NULL)
 	{
-		head = tail = new_node;
+        staff_head = staff_tail = new_node;
 	}
 	else
 	{
-		tail->next = new_node;
-        new_node->prev = tail;
-        tail = new_node;
+        staff_tail->next = new_node;
+        new_node->prev = staff_tail;
+        staff_tail = new_node;
 	}
 }
 
@@ -42,7 +42,7 @@ void reg()
     int i = 1;
     int staff_id, centre_code;
     string staff_name, staff_position, staff_password;
-    head = tail = NULL;
+    staff_head = staff_tail = NULL;
     cout << "Staff Registration" << endl;
     display_separator();
     cout << endl;
@@ -57,10 +57,19 @@ void reg()
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
         cout << "Enter Staff Position: ";
         getline(cin, staff_position);
-        cout << "Enter Centre Code: ";
-        cin >> centre_code;
+        do {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "Enter Centre Code: ";
+            cin >> centre_code;
+            if (cin.fail()) {
+                cout << "Invalid input" << endl;
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            }
+        } while (cin.fail());
         cout << "Enter Password: ";
         cin >> staff_password;
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
         //8 character or greater password validation
         while (staff_password.length() < 8)
         {
@@ -79,18 +88,18 @@ void reg()
         {
             return;
         }
-    }while(i != 0 || cin.fail());
+    }while(i != 0);
 }
 
 int login_checker(int staff_id, string staff_password)
 {
-    if(staff_id <= tail->staff_id/2)
+    if(staff_id <= staff_tail->staff_id/2)
     {
-        if(head == NULL)
+        if(staff_head == NULL)
         {
             return 0;
         }
-        Staff* current_ptr = head;
+        Staff* current_ptr = staff_head;
         do{
             if(current_ptr->staff_id == staff_id)
             {
@@ -103,11 +112,11 @@ int login_checker(int staff_id, string staff_password)
         }while(current_ptr != NULL);
     }
     else {
-        if(tail == NULL)
+        if(staff_tail == NULL)
         {
             return 0;
         }
-        Staff* current_ptr = tail;
+        Staff* current_ptr = staff_tail;
         do{
             if(current_ptr->staff_id == staff_id)
             {
@@ -119,6 +128,7 @@ int login_checker(int staff_id, string staff_password)
             current_ptr = current_ptr->prev;
         }while(current_ptr != NULL);
     }
+    return 0;
 }
 
 void login()

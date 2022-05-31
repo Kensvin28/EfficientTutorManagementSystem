@@ -45,7 +45,6 @@ void search_by_tutor_rating(int rating) {
         return;
     }
 
-
     if (rating <= 3) {
         Tutor* current = head;
         while (current != NULL) {
