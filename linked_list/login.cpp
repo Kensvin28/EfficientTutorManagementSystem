@@ -4,8 +4,8 @@
 #include <limits>
 #include "display.hpp"
 #include "data.hpp"
-extern struct Staff* head;
-extern struct Staff* tail;
+extern struct Staff* staff_head;
+extern struct Staff* staff_tail;
 
 using namespace std;
 
@@ -25,25 +25,25 @@ Staff* add_new_staff_node(int staff_id, string staff_name, int centre_code, stri
 
 void insert_to_end(Staff* new_node)
 {
-	if (head == NULL)
+	if (staff_head == NULL)
 	{
-		head = tail = new_node;
+        staff_head = staff_tail = new_node;
 	}
 	else
 	{
-		tail->next = new_node;
-        new_node->prev = tail;
-        tail = new_node;
+        staff_tail->next = new_node;
+        new_node->prev = staff_tail;
+        staff_tail = new_node;
 	}
 }
 
 int assign_id()
 {
-    if(tail == NULL)
+    if(staff_tail == NULL)
     {
         return 1;
     }else {
-        return tail->staff_id + 1;
+        return staff_tail->staff_id + 1;
     }
 }
 
@@ -52,7 +52,7 @@ void reg()
     int i = 1, check = 0;
     int staff_id, centre_code;
     string staff_name, staff_position, staff_password;
-    head = tail = NULL;
+    staff_head = staff_tail = NULL;
     cout << "\nStaff Registration" << endl;
     display_separator();
     cout << endl;
@@ -64,10 +64,21 @@ void reg()
         getline(cin, staff_name);
         cout << "Enter Staff Position: ";
         getline(cin, staff_position);
-        cout << "Enter Centre Code: ";
-        cin >> centre_code;
+        do {
+            cin.clear();
+            // cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "Enter Centre Code (1-5): ";
+            cin >> centre_code;
+            if ((centre_code < 1 && centre_code > 5) || cin.fail()) {
+                cout << "Invalid input" << endl;
+                cout << "Enter Centre Code(1-5): ";
+                cin >> centre_code;
+                // cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            }
+        } while ((centre_code < 1 && centre_code > 5) || cin.fail());
         cout << "Enter Password: ";
         cin >> staff_password;
+        // cin.ignore(numeric_limits<streamsize>::max(), '\n');
         //8 character or greater password validation
         while (staff_password.length() < 8)
         {
@@ -92,13 +103,13 @@ void reg()
 
 int login_checker(int staff_id, string staff_password)
 {
-    if(staff_id <= tail->staff_id/2)
+    if(staff_id <= staff_tail->staff_id/2)
     {
-        if(head == NULL)
+        if(staff_head == NULL)
         {
             return 0;
         }
-        Staff* current_ptr = head;
+        Staff* current_ptr = staff_head;
         do{
             if(current_ptr->staff_id == staff_id)
             {
@@ -111,11 +122,11 @@ int login_checker(int staff_id, string staff_password)
         }while(current_ptr != NULL);
     }
     else {
-        if(tail == NULL)
+        if(staff_tail == NULL)
         {
             return 0;
         }
-        Staff* current_ptr = tail;
+        Staff* current_ptr = staff_tail;
         do{
             if(current_ptr->staff_id == staff_id)
             {
@@ -126,7 +137,8 @@ int login_checker(int staff_id, string staff_password)
             }
             current_ptr = current_ptr->prev;
         }while(current_ptr != NULL);
-    } return 0;
+    }
+    return 0;
 }
 
 void login()
@@ -135,36 +147,25 @@ void login()
     int staff_id;
     string staff_password;
 
-    cout << "\nStaff Login" << endl;
-    display_separator();
-    cout << endl;
-    cout << "Staff ID: ";
-    cin >> staff_id;
-    cout << "Password: ";
-    cin >> staff_password;
-    flag = login_checker(staff_id, staff_password);
-    if(flag == 0)
+    while(flag == 0)
     {
-        cout << "Invalid Login Credentials. Please try again.";
-        login();
-    }else{
-        cout << "Login Successful\n\n";
-        return;
+        cout << "\nStaff Login" << endl;
+        display_separator();
+        cout << endl;
+        cout << "Staff ID: ";
+        cin >> staff_id;
+        cout << "Password: ";
+        cin >> staff_password;
+        flag = login_checker(staff_id, staff_password);
+        //TODO remove login override
+        //flag = 1;
+        if(flag == 0)
+        {
+            cout << "Invalid Login Credentials. Please try again.";
+        }else{
+            cout << "Login Successful" << endl;
+            return;
+        }
     }
-    
+    return;
 }
-
-// void login_menu()
-// {
-//     int choice = 0;
-//     cout << "1. Login" << endl;
-//     cout << "2. Register" << endl;
-//     cout << "3. Exit" << endl;
-//     if (choice == 3)
-//     {
-//         cout << "Good bye";
-//         return;
-//     }else if (choice == 1) login();
-//     else if (choice == 2) reg();
-//     else cout << "Invalid input";
-// }
