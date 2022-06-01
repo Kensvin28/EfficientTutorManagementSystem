@@ -7,6 +7,7 @@ Tutor* head;
 Tutor* tail;
 Staff* staff_head;
 Staff* staff_tail;
+int linked_list_size = 0;
 
 void main_menu();
 
