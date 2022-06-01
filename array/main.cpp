@@ -6,6 +6,9 @@ using namespace std;
 
 struct Tutor* clone_array = new Tutor[100];
 struct Tutor* tutor_array = new Tutor[100];
+struct Staff* staff_array = new Staff[100];
+int array_size = 0;
+int staff_array_size = 0;
 
 int main(){
     int choice;
@@ -28,7 +31,7 @@ int main(){
         cout << "Good bye";
         return 0;
     }
-    //else if (choice == 1) add_new_tutor();
+    else if (choice == 1) add_new_tutor();
     //else if (choice == 2) display();
     else if (choice == 3) search();
     else if (choice == 4) sort();
@@ -41,3 +44,41 @@ int main(){
     return 0;
 }
 
+void create_dummy_records() {
+    int staff_id = 1;
+    string staff_name = "admin";
+    string staff_position = "ADMIN";
+    int centre_code = 1;
+    string staff_password = "qwer1234";
+    add_new_staff(staff_id, staff_name, centre_code, staff_position, staff_password);
+
+    int tutor_ID = 1;
+    string name = "Broddie";
+    int date_joined = 20201206;
+    int date_terminated = NULL;
+    double hourly_rate = 53.33;
+    string phone = "9649007418";
+    string address = "602 Orin Drive";
+    centre_code = 101;
+    string centre_name = "Bukit Jalil";
+    int subject_code = 9;
+    string subject_name = "Physics";
+    int rating = 3;
+
+    add_new_tutor();
+
+    tutor_ID = 2;
+    name = "Broda";
+    date_joined = 20201206;
+    date_terminated = NULL;
+    hourly_rate = 53.33;
+    phone = "9649007418";
+    address = "602 Orin Drive";
+    centre_code = 101;
+    centre_name = "Bukit Jalil";
+    subject_code = 9;
+    subject_name = "Physics";
+    rating = 1;
+
+    add_new_tutor();
+}

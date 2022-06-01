@@ -1,13 +1,13 @@
 #include "data.hpp"
 #include "display.hpp"
 #include "array.hpp"
+#include "sort.hpp"
 #include <iostream>
 using namespace std;
 //dummy
 extern struct Tutor* clone_array;
 extern struct Tutor* tutor_array;
-const string ID = "ID";
-const string PAY_RATE = "PAY_RATE";
+sort_by sort_type;
 
 void swap(Tutor* input_array, int index1, int index2) {
 	Tutor temp = input_array[index1];
@@ -15,7 +15,8 @@ void swap(Tutor* input_array, int index1, int index2) {
 	input_array[index2] = temp;
 }
 
-int median_of_three(Tutor* input_array, int low_index, int high_index, string type){
+//find pivot
+int median_of_three(Tutor* input_array, int low_index, int high_index, sort_by type){
 	int middle_index = (low_index + high_index) / 2;
 	double low, middle, high;
 	if (type == ID) {
@@ -43,9 +44,8 @@ int median_of_three(Tutor* input_array, int low_index, int high_index, string ty
 	return high_index;
 }
 
-void partition(Tutor* input_array, int left_index, int right_index, int pivot, string type){
+void partition(Tutor* input_array, int left_index, int right_index, int pivot, sort_by type){
 	double left, right;
-
 	if (type == ID) {
 		left = input_array[left_index].tutor_ID;
 		right = input_array[right_index].tutor_ID;
@@ -56,22 +56,26 @@ void partition(Tutor* input_array, int left_index, int right_index, int pivot, s
 	}
 
 	while(true){
+		//if left less than pivot, leave as it is, move to higher index
 		while (left_index < right_index && left < pivot){
 			++left_index;
 		}
+		//if right more than pivot, leave as it is, move to lower index
 		while (left_index < right_index && right > pivot){
 			--right_index;
 		}
+		//return if left and right at the same place
 		if (left_index >= right_index){
 			return;
 		}
-
+		//swap left and right
 		swap(input_array, left_index++, right_index--);
 	}
 }
 
-void quick_sort(Tutor* input_array, int low_index, int high_index, string type) {
+void quick_sort(Tutor* input_array, int low_index, int high_index, sort_by type) {
 	if (high_index > low_index) {
+		//get pivot position
 		int pivot_position = median_of_three(input_array, low_index, high_index, type);
 		int left_position = low_index;
 		int right_position = high_index - 1;
@@ -86,8 +90,10 @@ void quick_sort(Tutor* input_array, int low_index, int high_index, string type) 
 			pivot = input_array[pivot_position].hourly_rate;
 		}
 
+		//divide array
 		partition(input_array, left_position, right_position, pivot_position, type);
 
+		//swap pivot
 		if (left > pivot) {
 			swap(input_array, left_position, pivot_position);
 		}
@@ -100,6 +106,7 @@ void quick_sort(Tutor* input_array, int low_index, int high_index, string type) 
 	}
 }
 
+//get maximum
 int get_max(Tutor* input_array, int size){
 	int max = input_array[1].rating;
 	for(int i = 2; i <= size; i++){
@@ -110,6 +117,7 @@ int get_max(Tutor* input_array, int size){
 	return max;
 }
 
+//count sort rating
 void count_sort(Tutor* input_array, int size){
 	int max = get_max(input_array, size);
 	int* count_array = new int[max + 1];
@@ -166,11 +174,11 @@ void sort() {
             clone_array[i] = tutor_array[i];
         }
 		if (choice == 1) {
-			quick_sort(clone_array, 0, array_size - 1, "ID");
+			quick_sort(clone_array, 0, array_size - 1, ID);
 			display_sorted(clone_array);
 		}
 		else if (choice == 2) {
-			quick_sort(clone_array, 0, array_size - 1, "PAY_RATE");
+			quick_sort(clone_array, 0, array_size - 1, PAY_RATE);
 			display_sorted(clone_array);
 		}
 		else if (choice == 3) {
