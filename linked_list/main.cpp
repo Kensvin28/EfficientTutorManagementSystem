@@ -72,7 +72,7 @@ void main_menu() {
             // return;
         }
 
-        //else if (choice == 1) add_new_tutor();
+        else if (choice == 1) add_new_tutor();
         //else if (choice == 2) display();
         else if (choice == 3) search();
         else if (choice == 4) sort();

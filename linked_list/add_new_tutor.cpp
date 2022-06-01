@@ -72,7 +72,7 @@
  	string name, phone, address, centre_name, subject_name;
  	double hourly_rate;
 
-     int choice;
+     int choice = 0;
      do{
          cout << "Add A new Tutor Record" << endl;
          cout << "ID: ";
@@ -95,7 +95,8 @@
          cin >> phone;
 
          cout << "\nAddress: ";
-         cin >> address;
+         cin.ignore(numeric_limits<streamsize>::max(), '\n');
+         getline(cin, address);
 
          cout << "\nCentre Code: ";
          cin >> centre_code;
@@ -104,13 +105,16 @@
          cin >> subject_code;
 
          cout << "\nSubject Name: ";
-         cin >> subject_name;
+         cin.ignore(numeric_limits<streamsize>::max(), '\n');
+         getline(cin, subject_name);
 
          cout << "\nRating: ";
          cin >> rating;
 
          Tutor* new_node = create_new_tutor_node(tutor_ID, name, date_joined, date_terminated, hourly_rate, phone, address, centre_code, centre_name, subject_code, subject_name, rating);
          insert_to_linked_list(new_node);
-
+         cout << "Record added successfully!" << endl << endl;
+         cout << "Enter 1 to add another one or any other key to return: ";
+         cin >> choice;
      }while(choice != 1);
  }
