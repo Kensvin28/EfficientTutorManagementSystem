@@ -1,3 +1,6 @@
+#ifndef DATA_H
+#define DATA_H
+
 #include <string>
 using namespace std;
 
@@ -26,3 +29,4 @@ struct Staff
 	string staff_password;
 };
 
+#endif

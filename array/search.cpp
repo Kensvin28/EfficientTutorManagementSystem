@@ -6,8 +6,8 @@
 using namespace std;
 
 //dummy
-Tutor clone_array[100];
-Tutor tutor_array[100];
+extern struct Tutor* clone_array;
+extern struct Tutor* tutor_array;
 
 //binary search
 int search_by_tutor_id(Tutor* input_array, int low, int high, int id){

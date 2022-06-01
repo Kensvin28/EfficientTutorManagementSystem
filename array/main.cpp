@@ -1,7 +1,11 @@
+#include "data.hpp"
 #include "functions.hpp"
 #include "display.hpp"
 #include <iostream>
 using namespace std;
+
+struct Tutor* clone_array = new Tutor[100];
+struct Tutor* tutor_array = new Tutor[100];
 
 int main(){
     int choice;
@@ -24,15 +28,16 @@ int main(){
         cout << "Good bye";
         return 0;
     }
-    else if (choice == 1) add_new_tutor();
-    else if (choice == 2) display();
+    //else if (choice == 1) add_new_tutor();
+    //else if (choice == 2) display();
     else if (choice == 3) search();
     else if (choice == 4) sort();
-    else if (choice == 5) modify();
-    else if (choice == 6) delete_tutor();
-    else if (choice == 7) report();
+    //else if (choice == 5) modify();
+    //else if (choice == 6) delete_tutor();
+    //else if (choice == 7) report();
     else cout << "Invalid input";
-
+    delete[] clone_array;
+    delete[] tutor_array;
     return 0;
 }
 
