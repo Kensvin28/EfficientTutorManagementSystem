@@ -18,8 +18,8 @@ int day_of_week(int y, int m, int d)
    return (y + y / 4 - y / 100 + y / 400 + t[m - 1] + d) % 7;
 }
 
-//function to print report on Sunday
-void report() {
+//function to print report
+void generate_report() {
     time_t now = time(0);
     tm* ltm = localtime(&now);
     int d = ltm->tm_mday;
@@ -27,11 +27,12 @@ void report() {
     int y = ltm->tm_year + 1900;
     
     int day_calc = day_of_week(y, m, d);
+    //0 = Sunday, 1 = Monday, 2 = Tuesday, 3 = Wednesday, 4 = Thursday, 5 = Friday, 6 = Saturday
     if (day_calc == 0) 
     {
         Tutor* current = head;
         do{
-            cout << "Today is Sunday, printing report" << endl;
+            cout << endl << "Today is Sunday, printing report" << endl;
             cout << "| " << current->tutor_ID << "| " << current->name << "| " << current->date_joined << "| " + current->date_terminated << "| " << current->hourly_rate << "| " << current->phone << 
             "| " << current->address << "| " << current->centre_code << "| " << current->centre_name << "| " << current->subject_code << "| " << current->subject_name << "| " << current->rating << "| " << endl;
             current = current->next;
@@ -40,6 +41,17 @@ void report() {
     }else{
         cout << "No report available for this week yet";
     }
+
+    return;
+}
+
+//report menu
+void report()
+{
+    string back;
+
+    generate_report();
+    system("pause");
 
     return;
 }

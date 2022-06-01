@@ -27,7 +27,7 @@ void login_menu(){
         cin >> choice;
         if(choice == 3){
             cout << "Goodbye!";
-            return;
+            exit(0);
         } else if (choice == 1) reg();
         else if (choice == 2) main_menu();
     } while (true);

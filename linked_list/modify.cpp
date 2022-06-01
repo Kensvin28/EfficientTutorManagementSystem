@@ -7,13 +7,16 @@ using namespace std;
 extern struct Tutor* head;
 extern struct Tutor* tail;
 
+//modify phone function
 void modify_phone(Tutor* current){
     string phone;
     cout << "Insert new phone number: ";
     cin >> phone;
     current->phone = phone;
+    cout << endl;
 }
 
+//modify address function
 void modify_address(Tutor* current)
 {
     string address;
@@ -21,11 +24,14 @@ void modify_address(Tutor* current)
     cout << "Insert new address: ";
     getline(cin,address);
     current->address = address;
+    cout << endl;
 }
 
+//modify tutor function
 void modify_tutor(int tutor_ID)
 {
     if(head == NULL){
+        cout << "No Record Found" << endl;
         return;
     }
     Tutor* current;
@@ -103,6 +109,7 @@ void modify_tutor(int tutor_ID)
     }
 }
 
+//modify main menu
 void modify()
 {
     int choice = 0, tutor_ID;
@@ -112,6 +119,6 @@ void modify()
         modify_tutor(tutor_ID);
         // cout << "Type 1 to modify another record or any other key to return: ";
         // cin >> choice;
-    } while(choice != 1);
+    } while(choice == 1);
     return;
 }
