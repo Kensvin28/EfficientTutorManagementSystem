@@ -120,9 +120,6 @@ void insert_to_tutor_end(Tutor* new_node) {
     }
 }
 
-Staff* add_new_staff_node(int staff_id, string staff_name, int centre_code, string staff_position, string staff_password);
-
-
 void create_dummy_records() {
     int staff_id = 1;
     string staff_name = "admin";

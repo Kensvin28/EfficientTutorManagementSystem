@@ -10,5 +10,6 @@ void modify();
 void sort();
 void report();
 void delete_tutor();
+Staff* add_new_staff_node(int, string, int, string, string);
 
 #endif

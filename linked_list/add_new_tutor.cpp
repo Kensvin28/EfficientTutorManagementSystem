@@ -6,8 +6,6 @@
  using namespace std;
  extern struct Tutor* head;
  extern struct Tutor* tail;
- extern struct Staff* staff_head;
- extern struct Staff* staff_tail;
  extern int linked_list_size;
 
  Tutor* create_new_tutor_node(int tutor_ID, string name, int date_joined, int date_terminated, double hourly_rate, string phone, string address, int centre_code, string centre_name, int subject_code, string subject_name, int rating) {
