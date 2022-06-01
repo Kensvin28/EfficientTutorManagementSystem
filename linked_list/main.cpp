@@ -75,7 +75,7 @@ void main_menu() {
         //else if (choice == 2) display();
         else if (choice == 3) search();
         else if (choice == 4) sort();
-        //else if (choice == 5) modify();
+        else if (choice == 5) modify();
         //else if (choice == 6) delete_tutor();
         else if (choice == 7) report();
         else cout << "Invalid input!" << endl << endl;
