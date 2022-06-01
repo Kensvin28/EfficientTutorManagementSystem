@@ -9,6 +9,7 @@ extern struct Staff* staff_tail;
 
 using namespace std;
 
+//add new staff node to the doubly linked list
 Staff* add_new_staff_node(int staff_id, string staff_name, int centre_code, string staff_position, string staff_password)
 {
     Staff* new_node = new Staff;
@@ -23,6 +24,7 @@ Staff* add_new_staff_node(int staff_id, string staff_name, int centre_code, stri
     return new_node;
 }
 
+//insert new staff node to the end of doubly linked list
 void insert_to_end(Staff* new_node)
 {
 	if (staff_head == NULL)
@@ -37,6 +39,7 @@ void insert_to_end(Staff* new_node)
 	}
 }
 
+//auto assign id
 int assign_id()
 {
     if(staff_tail == NULL)
@@ -47,6 +50,7 @@ int assign_id()
     }
 }
 
+//register function
 void reg()
 {
     int i = 1, check = 0;
@@ -100,6 +104,7 @@ void reg()
     }while(i != 0);
 }
 
+//login validation
 int login_checker(int staff_id, string staff_password)
 {
     if (staff_head == NULL || staff_tail == NULL) {
@@ -144,6 +149,7 @@ int login_checker(int staff_id, string staff_password)
     return 0;
 }
 
+//login function
 bool login()
 {
     int flag = 0;

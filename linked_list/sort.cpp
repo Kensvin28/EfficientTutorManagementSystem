@@ -34,7 +34,7 @@ Tutor* copy_list(Tutor* head) {
 	return recursive_copy(head, NULL);
 }
 
-//TODO can you comment on these
+//split the doubly linked list into 2 parts
 Tutor* split(Tutor* head) {
 	Tutor* fast = head;
 	Tutor* slow = head;

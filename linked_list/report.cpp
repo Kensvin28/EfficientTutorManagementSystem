@@ -10,6 +10,7 @@ using namespace std;
 //References: https://www.codespeedy.com/how-to-find-day-from-date-in-cpp/  
 //https://www.softwaretestinghelp.com/date-and-time-in-cpp/  
 
+//calculate date month and year
 int day_of_week(int y, int m, int d)
 {
    static int t[] = { 0, 3, 2, 5, 0, 3, 5, 1, 4, 6, 2, 4 };
@@ -17,6 +18,7 @@ int day_of_week(int y, int m, int d)
    return (y + y / 4 - y / 100 + y / 400 + t[m - 1] + d) % 7;
 }
 
+//function to print report on Sunday
 void report() {
     time_t now = time(0);
     tm* ltm = localtime(&now);
