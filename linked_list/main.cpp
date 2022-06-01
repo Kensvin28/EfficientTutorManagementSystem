@@ -8,6 +8,30 @@ Tutor* tail;
 Staff* staff_head;
 Staff* staff_tail;
 
+void main_menu();
+
+void login_menu(){
+    int choice;
+    do {
+        choice = 0;
+        system("CLS");
+        display_separator();
+        cout << " eXcel Tuition Centre ";
+        display_separator();
+        cout << endl;
+        cout << "1. Register" << endl;
+        cout << "2. Login" << endl;
+        cout << "3. Exit" << endl;
+        cout << "Choice: ";
+        cin >> choice;
+        if(choice == 3){
+            cout << "Goodbye!";
+            exit;
+        } else if (choice == 1) reg();
+        else if (choice == 2) main_menu();
+    } while (true);
+}
+
 void main_menu() {
     int choice;
     bool logged_in = false;
@@ -43,7 +67,8 @@ void main_menu() {
 
         if (choice == 8) {
             cout << "Good bye!";
-            return;
+            login_menu();
+            // return;
         }
 
         //else if (choice == 1) add_new_tutor();
@@ -141,6 +166,6 @@ void create_dummy_records() {
 
 int main() {
     create_dummy_records();
-    main_menu();
+    login_menu();
     return 0;
 }
