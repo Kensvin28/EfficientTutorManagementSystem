@@ -2,6 +2,7 @@
 #include "sort.hpp"
 #include "display.hpp"
 #include <iostream>
+#include <limits>
 using namespace std;
 
 extern struct Tutor* clone_array;
