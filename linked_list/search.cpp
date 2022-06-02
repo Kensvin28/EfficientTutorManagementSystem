@@ -100,7 +100,7 @@ void search_by_tutor_rating(int rating) {
 }
 
 //validate choice
-void validate_int() {
+void validate_number() {
     while (cin.fail()) {
         cout << "Invalid input" << endl;
         cin.clear();
@@ -130,10 +130,10 @@ void search(){
                 cout << "Input tutor ID to be searched: ";
                 cin >> id;
                 search_by_tutor_id(id);
-                validate_int();
+                validate_number();
                 cout << "Type 1 to do another search or any other key to return: ";
                 cin >> choice;
-                validate_int();
+                validate_number();
             } while (choice == 1);
         }
         //search tutor by rating
@@ -142,11 +142,11 @@ void search(){
             do {
                 cout << "Input tutor rating to be searched: ";
                 cin >> rating;
-                validate_int();
+                validate_number();
                 search_by_tutor_rating(rating);
                 cout << "Type 1 to do another search or any other key to return: ";
                 cin >> choice;
-                validate_int();
+                validate_number();
             } while (choice == 1);
         }
         cout << endl;
