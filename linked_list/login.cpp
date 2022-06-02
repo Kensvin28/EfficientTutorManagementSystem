@@ -4,6 +4,7 @@
 #include <limits>
 #include "display.hpp"
 #include "data.hpp"
+extern int staff_list_size;
 extern struct Staff* staff_head;
 extern struct Staff* staff_tail;
 
@@ -21,6 +22,7 @@ Staff* add_new_staff_node(int staff_id, string staff_name, int centre_code, stri
     new_node->next = NULL;
     new_node->prev = NULL;
 
+    staff_list_size++;
     return new_node;
 }
 
@@ -42,12 +44,7 @@ void insert_to_end(Staff* new_node)
 //auto assign id
 int assign_id()
 {
-    if(staff_tail == NULL)
-    {
-        return 1;
-    }else {
-        return staff_tail->staff_id + 1;
-    }
+    return staff_list_size + 1;
 }
 
 //register function
@@ -143,7 +140,7 @@ int login_checker(int staff_id, string staff_password)
         }while(current_ptr != NULL);
     }
 
-    cout << "User ID not found" << endl;
+    // cout << "User ID not found" << endl;
     return 0;
 }
 
@@ -156,11 +153,11 @@ bool login()
 
     while(flag == 0)
     {
-        system("CLS");
-        display_separator();
-        cout << " eXcel Tuition Centre ";
-        display_separator();
-        cout << endl;
+        // system("CLS");
+        // display_separator();
+        // cout << " eXcel Tuition Centre ";
+        // display_separator();
+        // cout << endl;
 
         cout << "Staff Login" << endl;
         display_separator();
@@ -180,10 +177,10 @@ bool login()
         cin >> staff_password;
         flag = login_checker(staff_id, staff_password);
         //TODO remove login override
-        flag = 1;
+        // flag = 1;
         if (flag == 0)
         {
-            cout << "Invalid Login Credentials. Please try again.";
+            cout << "Invalid Login Credentials. Please try again." << endl << endl;
         }
         else {
             cout << "Login Successful" << endl;
