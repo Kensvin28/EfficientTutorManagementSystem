@@ -3,7 +3,7 @@
 
 void reg();
 bool login();
-void create_new_tutor(int, string, int, int, double, string, string, int, string, int, string, int);
+void create_new_tutor(int, string, string, string, double, string, string, int, string, int, string, int);
 void add_new_tutor();
 // void display();
 void search();

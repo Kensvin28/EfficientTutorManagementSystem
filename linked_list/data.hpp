@@ -7,8 +7,8 @@ struct Tutor
 {
 	int tutor_ID;
 	std::string name;
-	int date_joined;
-	int date_terminated;
+	std::string date_joined;
+	std::string date_terminated;
 	double hourly_rate;
 	std::string phone;
 	std::string address;

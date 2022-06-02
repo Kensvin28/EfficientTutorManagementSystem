@@ -8,8 +8,8 @@ struct Tutor
 {
 	int tutor_ID;
 	string name;
-	int date_joined;
-	int date_terminated;
+	string date_joined;
+	string date_terminated;
 	double hourly_rate;
 	string phone;
 	string address;

@@ -8,7 +8,7 @@
  extern struct Tutor* tail;
  extern int linked_list_size;
 
- Tutor* create_new_tutor_node(int tutor_ID, string name, int date_joined, int date_terminated, double hourly_rate, string phone, string address, int centre_code, string centre_name, int subject_code, string subject_name, int rating) {
+ Tutor* create_new_tutor_node(int tutor_ID, string name, string date_joined, string date_terminated, double hourly_rate, string phone, string address, int centre_code, string centre_name, int subject_code, string subject_name, int rating) {
      Tutor* new_node = new Tutor;
      new_node->tutor_ID = tutor_ID;
      new_node->name = name;
@@ -65,54 +65,155 @@
      }
  }
 
+bool check_id(int tutor_id) {
+    //if head points to null, list is empty
+    if (head == NULL) {
+        return 1;
+    }
+       
+    //if tutor node is closer to head
+    if (tutor_id <= tail->tutor_ID / 2) {
+        Tutor* current = head;
+        while (current != NULL) {
+            //display search result if match is found
+            if (current->tutor_ID == tutor_id) {
+                cout << "ID is used" << endl;
+                return 0;
+            }
+            //traverse linked list
+            current = current->next;
+        }
+    }
+    else {
+        Tutor* current = tail;
+        while (current != NULL) {
+            //display search result if match is found
+            if (current->tutor_ID == tutor_id) {
+                cout << "ID is used" << endl;
+                return 0;
+            }
+            //traverse linked list
+            current = current->prev;
+        }
+        
+    }
+    //ID not found
+    return 1;
+}
+
+bool check_date(string date_joined, string date_terminated)
+{
+        string temp;
+
+        temp = date_joined.substr(0,4);
+        int join_year = atoi(temp.c_str());
+        temp = date_joined.substr(5,2);
+        int join_month = atoi(temp.c_str());
+        temp = date_joined.substr(8,2);
+        int join_day = atoi(temp.c_str());
+
+        temp = date_terminated.substr(0,4);
+        int term_year = atoi(temp.c_str());
+        temp = date_terminated.substr(5,2);
+        int term_month = atoi(temp.c_str());
+        temp = date_terminated.substr(8,2);
+        int term_day = atoi(temp.c_str());
+
+        //Terminated year is lesser than Joined Year
+        if(term_year >= join_year) 
+        {
+            if(term_month >= join_month)
+            {
+                if(term_day > join_day)
+                {
+                    return 1;
+                }else{
+                    return 0;
+                }
+            }else{
+                return 0;
+            }
+        }else{
+            return 0;
+        }
+
+}
+
  void add_new_tutor(){
-     int tutor_ID, date_joined, date_terminated, centre_code, subject_code, rating;
- 	string name, phone, address, centre_name, subject_name;
+    int tutor_ID, centre_code, subject_code, rating;
+ 	string name, date_joined, date_terminated,phone, address, centre_name, subject_name;
  	double hourly_rate;
+    
+    int valid = 0;
+    int choice = 0;
+    do{
+        while(valid == 0){
+            system("cls");
+            display_separator();
+            cout << endl << "Add A new Tutor Record" << endl;
+            cout << "\nID: ";
+            cin >> tutor_ID;
+            valid = check_id(tutor_ID);
+            if(valid == 0){
+                int cont;
+                cout << endl << "Type 0 to enter another ID or other to go back: ";
+                cin >> cont;
+                if(cont != 0 || cin.fail()){
+                    return;
+                }
+            }
+        }
 
-     int choice = 0;
-     do{
-         cout << "Add A new Tutor Record" << endl;
-         cout << "ID: ";
-         cin >> tutor_ID;
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        cout << "Name: ";
+        getline(cin,name);
 
-         cin.ignore(numeric_limits<streamsize>::max(), '\n');
-         cout << "\nName: ";
-         getline(cin,name);
+        cout << "Date Joined(dd/mm/yyyy): ";
+        cin >> date_joined;
 
-         cout << "\nDate Joined: ";
-         cin >> date_joined;
+        cout << "Date Terminated(dd/mm/yyyy): ";
+        cin >> date_terminated;
 
-         cout << "\nDate Terminated: ";
-         cin >> date_terminated;
+        valid = check_date(date_joined, date_terminated);
 
-         cout << "\nHourly Rate: RM";
-         cin >> hourly_rate;
+        while(valid == 0 || cin.fail()){
+            cout << endl << "Terminated is less than Joined / Invalid Format" << endl << "Please Re-enter:";
+            cout << "Date Joined(dd/mm/yyyy): ";
+            cin >> date_joined;
 
-         cout << "\nPhone: ";
-         cin >> phone;
+            cout << "Date Terminated(dd/mm/yyyy): ";
+            cin >> date_terminated;
 
-         cout << "\nAddress: ";
-         cin.ignore(numeric_limits<streamsize>::max(), '\n');
-         getline(cin, address);
+            valid = check_date(date_joined, date_terminated);
+        }
 
-         cout << "\nCentre Code: ";
-         cin >> centre_code;
+        cout << "Hourly Rate: RM";
+        cin >> hourly_rate;
 
-         cout << "\nSubject Code: ";
-         cin >> subject_code;
+        cout << "Phone: ";
+        cin >> phone;
 
-         cout << "\nSubject Name: ";
-         cin.ignore(numeric_limits<streamsize>::max(), '\n');
-         getline(cin, subject_name);
+        cout << "Address: ";
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        getline(cin, address);
 
-         cout << "\nRating: ";
-         cin >> rating;
+        cout << "Centre Code: ";
+        cin >> centre_code;
 
-         Tutor* new_node = create_new_tutor_node(tutor_ID, name, date_joined, date_terminated, hourly_rate, phone, address, centre_code, centre_name, subject_code, subject_name, rating);
-         insert_to_linked_list(new_node);
-         cout << "Record added successfully!" << endl << endl;
-         cout << "Enter 1 to add another one or any other key to return: ";
-         cin >> choice;
-     }while(choice != 1);
+        cout << "Subject Code: ";
+        cin >> subject_code;
+
+        cout << "Subject Name: ";
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        getline(cin, subject_name);
+
+        cout << "Rating: ";
+        cin >> rating;
+
+        Tutor* new_node = create_new_tutor_node(tutor_ID, name, date_joined, date_terminated, hourly_rate, phone, address, centre_code, centre_name, subject_code, subject_name, rating);
+        insert_to_linked_list(new_node);
+        cout << "Record added successfully!" << endl << endl;
+        cout << "Enter 1 to add another one or any other key to return: ";
+        cin >> choice;
+     }while(choice == 1);
  }
