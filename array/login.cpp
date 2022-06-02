@@ -72,6 +72,7 @@ void reg(){
         };
 
         add_new_staff(staff_id, staff_name, centre_code, staff_position, staff_password);
+        cout << endl << staff_array_size << endl;
 
         cout << "\n" << staff_id << "| " << staff_name << "| " << centre_code << "| " << staff_position << "| " << staff_password << endl;
         cout << "Type 0 to end / other numbers to add more: ";
@@ -112,9 +113,11 @@ int login_checker(int staff_id, string staff_password)
             current_logged_in = staff_array[index];
             return 1;
         }
-    }else {
-        return 0;
     }
+    // }else {
+    //     return 0;
+    // }
+    return 0;
 }
 
 bool login()
@@ -125,11 +128,11 @@ bool login()
 
     while(flag == 0)
     {
-        system("CLS");
-        display_separator();
-        cout << " eXcel Tuition Centre ";
-        display_separator();
-        cout << endl;
+        // system("CLS");
+        // display_separator();
+        // cout << " eXcel Tuition Centre ";
+        // display_separator();
+        // cout << endl;
 
         cout << "Staff Login" << endl;
         display_separator();
@@ -151,7 +154,7 @@ bool login()
         // flag = 1;
         if (flag == 0)
         {
-            cout << "Invalid Login Credentials. Please try again.";
+            cout << "Invalid Login Credentials. Please try again." << endl << endl;
         }
         else {
             cout << "Login Successful" << endl;
