@@ -10,37 +10,13 @@ struct Staff* staff_array = new Staff[100];
 int array_size = 0;
 int staff_array_size = 0;
 
-int main(){
-    int choice;
-    display_separator();
-    cout << " eXcel Tuition Centre ";
-    display_separator();
-    cout << endl;
-    cout << "1. Add new tutor" << endl;
-    cout << "2. Display all tutors" << endl;
-    cout << "3. Search tutor" << endl;
-    cout << "4. Sort tutor" << endl;
-    cout << "5. Modify tutor" << endl;
-    cout << "6. Delete tutor" << endl;
-    cout << "7. Report" << endl;
-    cout << "8. Exit" << endl;
-    cout << "Choice: ";
-    cin >> choice;
+void main_menu();
+void login_menu();
+void create_dummy_records();
 
-    if (choice == 8) {
-        cout << "Good bye";
-        return 0;
-    }
-    else if (choice == 1) add_new_tutor();
-    //else if (choice == 2) display();
-    else if (choice == 3) search();
-    else if (choice == 4) sort();
-    //else if (choice == 5) modify();
-    //else if (choice == 6) delete_tutor();
-    //else if (choice == 7) report();
-    else cout << "Invalid input";
-    delete[] clone_array;
-    delete[] tutor_array;
+int main(){
+    create_dummy_records();
+    login_menu();
     return 0;
 }
 
@@ -65,7 +41,7 @@ void create_dummy_records() {
     string subject_name = "Physics";
     int rating = 3;
 
-    add_new_tutor();
+    create_new_tutor(tutor_ID, name, date_joined, date_terminated, hourly_rate, phone, address, centre_code, centre_name, subject_code, subject_name, rating);
 
     tutor_ID = 2;
     name = "Broda";
@@ -80,5 +56,75 @@ void create_dummy_records() {
     subject_name = "Physics";
     rating = 1;
 
-    add_new_tutor();
+    create_new_tutor(tutor_ID, name, date_joined, date_terminated, hourly_rate, phone, address, centre_code, centre_name, subject_code, subject_name, rating);
+}
+
+void login_menu(){
+    int choice;
+    do {
+        choice = 0;
+        system("CLS");
+        display_separator();
+        cout << " eXcel Tuition Centre ";
+        display_separator();
+        cout << endl;
+        cout << "1. Register" << endl;
+        cout << "2. Login" << endl;
+        cout << "3. Exit" << endl;
+        cout << "Choice: ";
+        cin >> choice;
+        if(choice == 3){
+            cout << "Goodbye!";
+            exit(0);
+        } else if (choice == 1) reg();
+        else if (choice == 2) main_menu();
+    } while (true);
+}
+
+void main_menu() {
+    int choice;
+    bool logged_in = false;
+    do{
+        choice = 0;
+        system("CLS");
+        display_separator();
+        cout << " eXcel Tuition Centre ";
+        display_separator();
+        cout << endl;
+
+        //log in if not logged in
+        if (!logged_in) {
+            logged_in = login();
+        }
+
+        display_separator();
+        cout << " eXcel Tuition Centre ";
+        display_separator();
+        cout << endl;
+        cout << "1. Add new tutor" << endl;
+        cout << "2. Display all tutors" << endl;
+        cout << "3. Search tutor" << endl;
+        cout << "4. Sort tutor" << endl;
+        cout << "5. Modify tutor" << endl;
+        cout << "6. Delete tutor" << endl;
+        cout << "7. Report" << endl;
+        cout << "8. Log out" << endl;
+        cout << "Choice: ";
+        cin >> choice;
+
+        if (choice == 8) {
+            cout << "Good bye";
+            login_menu();
+        }
+        else if (choice == 1) add_new_tutor();
+        //else if (choice == 2) display();
+        else if (choice == 3) search();
+        else if (choice == 4) sort();
+        //else if (choice == 5) modify();
+        //else if (choice == 6) delete_tutor();
+        //else if (choice == 7) report();
+        else cout << "Invalid input";
+        delete[] clone_array;
+        delete[] tutor_array;
+    }while(true);
 }
