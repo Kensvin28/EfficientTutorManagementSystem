@@ -50,10 +50,9 @@ int search_by_tutor_id(int tutor_id) {
     cout << "Record with ID " << tutor_id << " is not found" << endl;
 }
 
-void search_by_tutor_rating(int rating) {
-    //TODO change so that it does not affect original data, temp linked_list_size
-    //Tutor* new_head = copy_list(head);
-    merge_sort(head, 3);
+void search_by_tutor_rating(int rating) {    
+    Tutor* new_head = copy_list(head);
+    merge_sort(new_head, 3);
 
     //if head points to null, list is empty 
     if (head == NULL) {
@@ -129,8 +128,8 @@ void search(){
             do {
                 cout << "Input tutor ID to be searched: ";
                 cin >> id;
-                search_by_tutor_id(id);
                 validate_number();
+                search_by_tutor_id(id);
                 cout << "Type 1 to do another search or any other key to return: ";
                 cin >> choice;
                 validate_number();

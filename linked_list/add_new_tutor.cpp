@@ -216,7 +216,7 @@ void add_new_tutor(){
         validate_number();
 
         //validate integer values
-        if(tutor_ID == NULL || hourly_rate == NULL || centre_code == NULL || subject_code == NULL || rating == NULL) {
+        if(tutor_ID == 0 || hourly_rate == 0 || centre_code == 0 || subject_code == 0 || rating == 0) {
             cout << "Failed to add record!" << endl << endl;
         }
         else {
