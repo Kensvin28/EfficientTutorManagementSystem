@@ -8,6 +8,7 @@
 extern struct Staff* clone_array;
 extern struct Staff* staff_array;
 extern int staff_array_size;
+struct Staff current_logged_in;
 
 using namespace std;
 
@@ -108,6 +109,7 @@ int login_checker(int staff_id, string staff_password)
     if(staff_array[index].staff_id == staff_id){
         if(staff_array[index].staff_password == staff_password)
         {
+            current_logged_in = staff_array[index];
             return 1;
         }
     }else {
