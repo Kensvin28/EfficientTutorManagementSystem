@@ -124,7 +124,5 @@ void main_menu() {
         else if (choice == 6) remove();
         else if (choice == 7) report();
         else cout << "Invalid input";
-        delete[] clone_array;
-        delete[] tutor_array;
     }while(true);
 }
