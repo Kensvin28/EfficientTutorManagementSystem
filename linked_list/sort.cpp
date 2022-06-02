@@ -126,16 +126,6 @@ Tutor* merge_sort(Tutor* head, int type) {
 	}
 }
 
-//TODO can be combined into the display section
-void display_sorted(Tutor* head) {
-	Tutor* current = head;
-	while (current != NULL) {
-		//TODO change format later
-		cout << current->tutor_ID << " | " << current->name << " | " << current->date_joined << " | " << current->date_terminated << " | " << current->hourly_rate << " | " << current->phone << " | " << current->address << " | " << current->centre_code << " | " << current->centre_name << " | " << current->subject_code << " | " << current->subject_name << " | " << current->rating << endl;
-		current = current->next;
-	}
-}
-
 
 //sort menu
 void sort() {

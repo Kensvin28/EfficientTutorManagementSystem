@@ -6,38 +6,43 @@
 using namespace std;
 extern struct Tutor* head;
 extern struct Tutor* tail;
+extern int linked_list_size;
 
 //search tutor by tutor ID
-void search_by_tutor_id(int tutor_id) {
+int search_by_tutor_id(int tutor_id) {
     //if head points to null, list is empty
     if (head == NULL) {
         cout << "Record with ID " << tutor_id << " is not found" << endl;
-        return;
+        return 0;
     }
        
     //if tutor node is closer to head
     if (tutor_id <= tail->tutor_ID / 2) {
+        int position = 1;
         Tutor* current = head;
         while (current != NULL) {
             //display search result if match is found
             if (current->tutor_ID == tutor_id) {
                 display_detailed_current(current);
-                return;
+                return position;
             }
             //traverse linked list
             current = current->next;
+            position++;
         }
     }
     else {
         Tutor* current = tail;
+        int position = linked_list_size;
         while (current != NULL) {
             //display search result if match is found
             if (current->tutor_ID == tutor_id) {
                 display_detailed_current(current);
-                return;
+                return position;
             }
             //traverse linked list
             current = current->prev;
+            position--;
         }
         
     }

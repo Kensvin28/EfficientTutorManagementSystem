@@ -3,6 +3,8 @@
 
 #include "data.hpp"
 #include <string>
+
+void main_menu();
 void reg();
 bool login();
 void add_new_tutor();

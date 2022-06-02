@@ -4,7 +4,6 @@
 #include "sort.hpp"
 #include <iostream>
 using namespace std;
-//dummy
 extern struct Tutor* clone_array;
 extern struct Tutor* tutor_array;
 sort_by sort_type;

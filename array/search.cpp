@@ -6,7 +6,6 @@
 #include "search.hpp"
 using namespace std;
 
-//dummy
 extern struct Tutor* clone_array;
 extern struct Tutor* tutor_array;
 sort_by type;

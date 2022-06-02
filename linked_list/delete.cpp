@@ -2,6 +2,7 @@
  #include <limits>
  #include "data.hpp"
  #include "display.hpp"
+ #include "search.hpp"
 
  using namespace std;
  extern struct Tutor* head;
@@ -10,8 +11,7 @@
 
 void delete_tutor(int tutor_ID)
 {
-    int position;
-    position = search_by_tutor_id(tutor_ID);
+    int position = search_by_tutor_id(tutor_ID);
 
     if (position ==0)
     {
@@ -25,7 +25,7 @@ void delete_tutor(int tutor_ID)
         
         cout<<"Tutor record with the tutor ID: " << tutor_ID << "is deleted";
         delete(current);
-        linked_list_size=linked_list_size -1;
+        linked_list_size--;
 
     }
     else if (position == linked_list_size){
@@ -35,7 +35,7 @@ void delete_tutor(int tutor_ID)
 
         cout<<"Tutor record with the tutor ID: " << tutor_ID << "is deleted";
         delete(current);
-        linked_list_size = linked_list_size -1;
+        linked_list_size--;
     }
     else if(position <= linked_list_size/2)
     {

@@ -9,8 +9,6 @@ Staff* staff_head;
 Staff* staff_tail;
 int linked_list_size = 0;
 
-void main_menu();
-
 void login_menu(){
     int choice;
     do {
@@ -121,6 +119,7 @@ void insert_to_tutor_end(Tutor* new_node) {
 }
 
 void create_dummy_records() {
+
     int staff_id = 1;
     string staff_name = "admin";
     string staff_position = "ADMIN";
