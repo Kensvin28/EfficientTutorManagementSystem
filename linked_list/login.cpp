@@ -7,6 +7,7 @@
 extern int staff_list_size;
 extern struct Staff* staff_head;
 extern struct Staff* staff_tail;
+struct Staff* current_logged_in;
 
 using namespace std;
 
@@ -115,6 +116,7 @@ int login_checker(int staff_id, string staff_password)
             {
                 if (current_ptr->staff_password == staff_password)
                 {
+                    current_logged_in = current_ptr;
                     return 1;
                 } else {
                     cout << "Password not matching" << endl;
@@ -130,6 +132,7 @@ int login_checker(int staff_id, string staff_password)
             {
                 if (current_ptr->staff_password == staff_password)
                 {
+                    current_logged_in = current_ptr;
                     return 1;
                 }
                 else {

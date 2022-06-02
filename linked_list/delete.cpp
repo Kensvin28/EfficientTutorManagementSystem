@@ -7,6 +7,7 @@
  using namespace std;
  extern struct Tutor* head;
  extern struct Tutor* tail;
+ extern struct Staff* current_logged_in;
  extern int linked_list_size;
 
 void delete_tutor(int tutor_ID)
@@ -93,10 +94,14 @@ void delete_tutor(int tutor_ID)
      int tutor_ID;
      int choice;
      do{
-        cout<<"Input the tutor ID that you want to delete: ";
-        cin>>tutor_ID;
-        delete_tutor(tutor_ID);
-
+        if(current_logged_in->staff_position == "HR Manager"){
+            cout<<"Input the tutor ID that you want to delete: ";
+            cin>>tutor_ID;
+            delete_tutor(tutor_ID);
+        }
+        else {
+            cout<<"Only HR Manager is allowed to delete!"<<endl;
+        }
         cout<<"Input 1 to delete another tutor or press any other key to return to the main menu: ";
         cin>>choice;
      }while(choice==1);

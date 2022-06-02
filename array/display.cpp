@@ -11,3 +11,7 @@ void display_detailed(Tutor* tutor_array, int index){
 void display_separator() {
 	cout << string(25, '=');
 }
+
+void display(){
+	
+}
