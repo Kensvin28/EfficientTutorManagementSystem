@@ -84,7 +84,7 @@ void main_menu() {
 }
 
 //TODO: remove temp add node and insert node
-Tutor* add_new_tutor_node(int tutor_ID, string name, int date_joined, int date_terminated, double hourly_rate, string phone, string address, int centre_code, string centre_name, int subject_code, string subject_name, int rating) {
+Tutor* add_new_tutor_node(int tutor_ID, string name, string date_joined, string date_terminated, double hourly_rate, string phone, string address, int centre_code, string centre_name, int subject_code, string subject_name, int rating) {
     Tutor* new_node = new Tutor;
     new_node->tutor_ID = tutor_ID;
     new_node->name = name;
@@ -131,8 +131,8 @@ void create_dummy_records() {
 
     int tutor_ID = 1;
     string name = "Broddie";
-    int date_joined = 20201206;
-    int date_terminated = 0;
+    string date_joined = "01/01/2000";
+    string date_terminated = "";
     double hourly_rate = 53.33;
     string phone = "9649007418";
     string address = "602 Orin Drive";
@@ -147,8 +147,8 @@ void create_dummy_records() {
 
     tutor_ID = 2;
     name = "Broda";
-    date_joined = 20201206;
-    date_terminated = 0;
+    date_joined = "08/06/2002";
+    date_terminated = "";
     hourly_rate = 53.33;
     phone = "9649007418";
     address = "602 Orin Drive";
