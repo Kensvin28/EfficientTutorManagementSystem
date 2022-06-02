@@ -1,13 +1,12 @@
 #include "data.hpp"
 #include "sort.hpp"
 #include "display.hpp"
-#include "array.hpp"
 #include <iostream>
-#include "search.hpp"
 using namespace std;
 
 extern struct Tutor* clone_array;
 extern struct Tutor* tutor_array;
+extern int tutor_array_size;
 sort_by type;
 
 //binary search
@@ -48,14 +47,22 @@ int search_by_tutor_rating(Tutor* input_array, int low, int high, int rating){
 void print_tutor_by_rating(Tutor* input_array, int rating, int index){
     while (input_array[index].rating == rating){
         display_detailed(input_array, index);
-        index = index + 1;
+        index++;
+    }
+}
+
+//validate choice
+void validate_number() {
+    while (cin.fail()) {
+        cout << "Invalid input" << endl;
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
     }
 }
 
 //search menu
 void search(){
     int choice;
-    int array_size = get_tutor_array_size();
     
     do {
         display_separator();
@@ -68,7 +75,7 @@ void search(){
         cin >> choice;
         
         //copy array
-        for(int i = 0; i < array_size; i++){
+        for(int i = 0; i < tutor_array_size; i++){
             clone_array[i] = tutor_array[i];
         }
 
@@ -77,12 +84,13 @@ void search(){
             int id;
             do {
                 //sort by id
-                quick_sort(clone_array, 0, array_size - 1, ID);
+                quick_sort(clone_array, 0, tutor_array_size - 1, ID);
                 cout << "Input tutor ID to be searched: ";
                 cin >> id;
-                
+                validate_number();
+
                 //binary search
-                int index = search_by_tutor_id(clone_array, 0, array_size - 1, id);
+                int index = search_by_tutor_id(clone_array, 0, tutor_array_size - 1, id);
                 if (index == -1) {
                     cout << "Tutor is not registered in the database.";
                 } 
@@ -92,6 +100,7 @@ void search(){
 
                 cout << "Type 1 to do another search or any other key to return: ";
                 cin >> choice;
+                validate_number();
             } while (choice == 1);
         }
         //search by tutor rating
@@ -99,12 +108,13 @@ void search(){
             int rating;
             do {
                 //sort by rating
-                count_sort(clone_array, array_size);
+                count_sort(clone_array, tutor_array_size);
                 cout << "Input tutor rating to be searched: ";
                 cin >> rating;
+                validate_number();
                 
                 //binary search
-                int index = search_by_tutor_rating(clone_array, 0, array_size - 1, rating);
+                int index = search_by_tutor_rating(clone_array, 0, tutor_array_size - 1, rating);
                 if (index == -1) {
                     cout << "Tutor with rating " << rating << "is not found.";
                 } 
@@ -114,10 +124,11 @@ void search(){
 
                 cout << "Type 1 to do another search or any other key to return: ";
                 cin >> choice;
+                validate_number();
             } while (choice == 1);
         }
         else if (choice != 0) {
-            cout << "Invalid input";
+            cout << "Invalid input" << endl;
         }
     } while(choice <= 0 && choice >= 2);
 }

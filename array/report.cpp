@@ -1,11 +1,11 @@
 #include <iostream>
 #include <ctime>
 #include "data.hpp"
-#include "array.hpp"
 #include "display.hpp"
 #pragma warning(disable:4996)
 extern struct Tutor* tutor_array;
 extern struct Tutor* clone_array;
+extern int tutor_array_size;
 
 using namespace std;
 
@@ -25,7 +25,7 @@ void generate_report() {
     int y = ltm->tm_year + 1900;
     
     int day_calc = day_of_week(y, m, d);
-    int array_size = get_tutor_array_size() - 1;
+    int array_size = tutor_array_size - 1;
     //0 = Sunday, 1 = Monday, 2 = Tuesday, 3 = Wednesday, 4 = Thursday, 5 = Friday, 6 = Saturday
     if (day_calc == 0) 
     {
