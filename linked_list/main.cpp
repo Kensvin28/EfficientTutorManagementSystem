@@ -1,6 +1,7 @@
 #include "functions.hpp"
 #include "display.hpp"
 #include "login.hpp"
+#include "add.hpp"
 #include <iostream>
 #include <string>
 using namespace std;
@@ -82,28 +83,7 @@ void main_menu() {
     } while (true);
 }
 
-//TODO: remove temp add node and insert node
-Tutor* add_new_tutor_node(int tutor_ID, string name, string date_joined, string date_terminated, double hourly_rate, string phone, string address, int centre_code, string centre_name, int subject_code, string subject_name, int rating) {
-    Tutor* new_node = new Tutor;
-    new_node->tutor_ID = tutor_ID;
-    new_node->name = name;
-    new_node->centre_code = centre_code;
-    new_node->date_joined = date_joined;
-    new_node->date_terminated = date_terminated;
-    new_node->hourly_rate = hourly_rate;
-    new_node->phone = phone;
-    new_node->address = address;
-    new_node->centre_code = centre_code;
-    new_node->centre_name = centre_name;
-    new_node->subject_code = subject_code;
-    new_node->subject_name = subject_name;
-    new_node->rating = rating;
-    new_node->next = NULL;
-    new_node->prev = NULL;
-
-    return new_node;
-}
-
+//TODO: remove temp insert node
 void insert_to_tutor_end(Tutor* new_node) {
     if (head == NULL)
     {
@@ -141,7 +121,7 @@ void create_dummy_records() {
     string subject_name = "Physics";
     int rating = 3;
 
-    Tutor* t_new_node = add_new_tutor_node(tutor_ID, name, date_joined, date_terminated, hourly_rate, phone, address, centre_code, centre_name, subject_code, subject_name, rating);
+    Tutor* t_new_node = create_new_tutor_node(tutor_ID, name, date_joined, date_terminated, hourly_rate, phone, address, centre_code, centre_name, subject_code, subject_name, rating);
     insert_to_tutor_end(t_new_node);
 
     tutor_ID = 2;
@@ -157,7 +137,7 @@ void create_dummy_records() {
     subject_name = "Physics";
     rating = 1;
 
-    t_new_node = add_new_tutor_node(tutor_ID, name, date_joined, date_terminated, hourly_rate, phone, address, centre_code, centre_name, subject_code, subject_name, rating);
+    t_new_node = create_new_tutor_node(tutor_ID, name, date_joined, date_terminated, hourly_rate, phone, address, centre_code, centre_name, subject_code, subject_name, rating);
     insert_to_tutor_end(t_new_node);
 }
 

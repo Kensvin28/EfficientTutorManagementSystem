@@ -112,13 +112,9 @@ void modify_tutor(int tutor_ID)
 //modify main menu
 void modify()
 {
-    int choice = 0, tutor_ID;
-    //do{
-        cout << "\nInput the tutor ID of a tutor record to modify: ";
-        cin >> tutor_ID;
-        modify_tutor(tutor_ID);
-        //cout << "Type 1 to modify another record or any other key to return: ";
-        //cin >> choice;
-    //} while(choice != 1);
+    int tutor_ID;
+    cout << "\nInput the tutor ID of a tutor record to modify: ";
+    cin >> tutor_ID;
+    modify_tutor(tutor_ID);
     return;
 }
