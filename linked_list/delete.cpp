@@ -13,17 +13,22 @@ void delete_tutor(int tutor_ID)
 {
     int position = search_by_tutor_id(tutor_ID);
 
-    if (position ==0)
+    if (position == 0 || head == NULL)
     {
         return;
     }
-    if (position ==1) 
+    if (position == 1) 
     {
         Tutor*current=head;
-        head=head->next;
-        head->prev=NULL;
+        if (head->next != NULL) {
+            head=head->next;
+            head->prev=NULL;
+        }
+        else {
+            head = head->next;
+        }
         
-        cout<<"Tutor record with the tutor ID: " << tutor_ID << "is deleted";
+        cout<<"Tutor record with the tutor ID: " << tutor_ID << " is deleted" << endl;
         delete(current);
         linked_list_size--;
 
@@ -33,7 +38,7 @@ void delete_tutor(int tutor_ID)
         tail=tail->prev;
         tail->next = NULL;
 
-        cout<<"Tutor record with the tutor ID: " << tutor_ID << "is deleted";
+        cout<<"Tutor record with the tutor ID: " << tutor_ID << " is deleted" << endl;
         delete(current);
         linked_list_size--;
     }
@@ -49,7 +54,7 @@ void delete_tutor(int tutor_ID)
                 current->prev->next = current->next;
                 current->next->prev = current->prev;
 
-                cout<<"Tutor record with the tutor ID: " << tutor_ID << "is deleted";
+                cout<<"Tutor record with the tutor ID: " << tutor_ID << " is deleted" << endl;
                 linked_list_size = linked_list_size -1;
 
                 return;
@@ -69,7 +74,7 @@ void delete_tutor(int tutor_ID)
             {
                 current->prev->next = current->next;
                 current->next->prev = current->prev;
-                cout<<"Tutor record with the tutor ID: " << tutor_ID << "is deleted";
+                cout<<"Tutor record with the tutor ID: " << tutor_ID << " is deleted" << endl;
 
                 delete(current);
                 linked_list_size = linked_list_size -1;
@@ -88,11 +93,11 @@ void delete_tutor(int tutor_ID)
      int tutor_ID;
      int choice;
      do{
-        cout<<"Input the tutor ID that you want to delete: "<<endl;
+        cout<<"Input the tutor ID that you want to delete: ";
         cin>>tutor_ID;
         delete_tutor(tutor_ID);
 
-        cout<<"Input 1 to delete another tutor or press any other key to return to the main menu"<<endl;
+        cout<<"Input 1 to delete another tutor or press any other key to return to the main menu: ";
         cin>>choice;
      }while(choice==1);
  }

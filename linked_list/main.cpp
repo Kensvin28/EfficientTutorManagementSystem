@@ -1,5 +1,6 @@
 #include "functions.hpp"
 #include "display.hpp"
+#include "login.hpp"
 #include <iostream>
 #include <string>
 using namespace std;
@@ -75,7 +76,7 @@ void main_menu() {
         else if (choice == 3) search();
         else if (choice == 4) sort();
         else if (choice == 5) modify();
-        else if (choice == 6) delete_tutor();
+        else if (choice == 6) remove();
         else if (choice == 7) report();
         else cout << "Invalid input!" << endl << endl;
     } while (true);
@@ -103,8 +104,6 @@ Tutor* add_new_tutor_node(int tutor_ID, string name, string date_joined, string 
     return new_node;
 }
 
-void insert_to_end(Staff*);
-
 void insert_to_tutor_end(Tutor* new_node) {
     if (head == NULL)
     {
@@ -116,6 +115,7 @@ void insert_to_tutor_end(Tutor* new_node) {
         new_node->prev = tail;
         tail = new_node;
     }
+    linked_list_size++;
 }
 
 void create_dummy_records() {

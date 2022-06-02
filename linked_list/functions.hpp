@@ -13,7 +13,7 @@ void search();
 void modify();
 void sort();
 void report();
-void delete_tutor();
+void remove();
 Staff* add_new_staff_node(int, std::string, int, std::string, std::string);
 
 #endif

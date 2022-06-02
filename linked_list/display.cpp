@@ -5,6 +5,11 @@ using namespace std;
 extern struct Tutor* head;
 extern struct Tutor* tail;
 
+
+void display(){
+
+}
+
 void display_detailed_current(Tutor* node){
 	Tutor* current = node;
 	cout << "| " << current->tutor_ID << "| " << current->name << "| " << current->date_joined << "| " + current->date_terminated << "| " << current->hourly_rate << "| " << current->phone <<
