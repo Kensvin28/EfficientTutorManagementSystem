@@ -86,7 +86,7 @@ void add_new_tutor() {
         while(valid == 0){
             system("cls");
             display_separator();
-            cout << endl << "Add A new Tutor Record" << endl;
+            cout << endl << "Add a new Tutor Record" << endl;
             cout << "\nID: ";
             cin >> tutor_ID;
             valid = check_id(tutor_ID);
