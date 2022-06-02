@@ -2,6 +2,7 @@
  #include <limits>
  #include "data.hpp"
  #include "display.hpp"
+ #include "search.hpp"
 
  using namespace std;
  extern struct Tutor* head;
@@ -145,9 +146,10 @@ void add_new_tutor(){
         while(valid == 0){
             system("cls");
             display_separator();
-            cout << endl << "Add A new Tutor Record" << endl;
+            cout << endl << "Add a new tutor record" << endl;
             cout << "\nID: ";
             cin >> tutor_ID;
+            validate_number();
             valid = check_id(tutor_ID);
             if(valid == 0){
                 int cont;
@@ -184,6 +186,7 @@ void add_new_tutor(){
 
         cout << "Hourly Rate: RM";
         cin >> hourly_rate;
+        validate_number();
 
         cout << "Phone: ";
         cin >> phone;
@@ -194,9 +197,15 @@ void add_new_tutor(){
 
         cout << "Centre Code: ";
         cin >> centre_code;
+        validate_number();
+
+        cout << "Centre Name: ";
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        getline(cin, centre_name);
 
         cout << "Subject Code: ";
         cin >> subject_code;
+        validate_number();
 
         cout << "Subject Name: ";
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
@@ -204,10 +213,18 @@ void add_new_tutor(){
 
         cout << "Rating: ";
         cin >> rating;
+        validate_number();
 
-        Tutor* new_node = create_new_tutor_node(tutor_ID, name, date_joined, date_terminated, hourly_rate, phone, address, centre_code, centre_name, subject_code, subject_name, rating);
-        insert_to_linked_list(new_node);
-        cout << "Record added successfully!" << endl << endl;
+        //validate integer values
+        if(tutor_ID == NULL || hourly_rate == NULL || centre_code == NULL || subject_code == NULL || rating == NULL) {
+            cout << "Failed to add record!" << endl << endl;
+        }
+        else {
+            Tutor* new_node = create_new_tutor_node(tutor_ID, name, date_joined, date_terminated, hourly_rate, phone, address, centre_code, centre_name, subject_code, subject_name, rating);
+            insert_to_linked_list(new_node);
+            cout << "Record added successfully!" << endl << endl;
+        }
+        
         cout << "Enter 1 to add another one or any other key to return: ";
         cin >> choice;
      }while(choice == 1);
