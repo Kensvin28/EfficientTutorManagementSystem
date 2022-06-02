@@ -3,6 +3,7 @@
 #include "display.hpp"
 #include "array.hpp"
 #include <iostream>
+#include "search.hpp"
 using namespace std;
 
 //dummy
