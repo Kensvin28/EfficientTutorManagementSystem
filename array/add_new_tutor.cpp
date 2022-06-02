@@ -7,14 +7,9 @@
 using namespace std;
 
 extern struct Tutor* tutor_array;
-extern int array_size;
-
-int get_tutor_array_size() {
-	return array_size;
-}
+extern int tutor_array_size;
 
 void create_new_tutor(int tutor_ID, string name, string date_joined, string date_terminated, double hourly_rate, string phone, string address, int centre_code, string centre_name, int subject_code, string subject_name, int rating){
-	int tutor_array_size = get_tutor_array_size();
 	tutor_array[tutor_array_size].tutor_ID = tutor_ID;
     tutor_array[tutor_array_size].name = name;
     tutor_array[tutor_array_size].date_joined = date_joined;
@@ -25,7 +20,6 @@ void create_new_tutor(int tutor_ID, string name, string date_joined, string date
 
 
 bool check_id(int tutor_id){
-    int tutor_array_size = get_tutor_array_size();
     quick_sort(tutor_array, 0, tutor_array_size - 1, ID);
     int index = search_by_tutor_id(tutor_array, 0, tutor_array_size-1, tutor_id);
     if(index == -1){
@@ -89,6 +83,7 @@ void add_new_tutor() {
             cout << endl << "Add a new Tutor Record" << endl;
             cout << "\nID: ";
             cin >> tutor_ID;
+            validate_number();
             valid = check_id(tutor_ID);
             if(valid == 0){
                 int cont;

@@ -1,11 +1,11 @@
 #include "data.hpp"
 #include "display.hpp"
-#include "array.hpp"
 #include "sort.hpp"
 #include <iostream>
 using namespace std;
 extern struct Tutor* clone_array;
 extern struct Tutor* tutor_array;
+extern int tutor_array_size;
 sort_by sort_type;
 
 void swap(Tutor* input_array, int index1, int index2) {
@@ -155,8 +155,6 @@ void display_sorted(Tutor* input_array){
 
 void sort() {
 	int choice;
-	//Get tutor array size
-	int array_size = get_tutor_array_size();
 	do {
 		display_separator();
 		cout << "Sort and Display Tutors";
@@ -169,19 +167,19 @@ void sort() {
 		cin >> choice;
 
 		 //copy array
-        for(int i = 0; i < array_size; i++){
+        for(int i = 0; i < tutor_array_size; i++){
             clone_array[i] = tutor_array[i];
         }
 		if (choice == 1) {
-			quick_sort(clone_array, 0, array_size - 1, ID);
+			quick_sort(clone_array, 0, tutor_array_size - 1, ID);
 			display_sorted(clone_array);
 		}
 		else if (choice == 2) {
-			quick_sort(clone_array, 0, array_size - 1, PAY_RATE);
+			quick_sort(clone_array, 0, tutor_array_size - 1, PAY_RATE);
 			display_sorted(clone_array);
 		}
 		else if (choice == 3) {
-			count_sort(clone_array, array_size - 1);
+			count_sort(clone_array, tutor_array_size - 1);
 			display_sorted(clone_array);
 		}
 		else if (choice != 0) {

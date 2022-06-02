@@ -7,7 +7,7 @@ using namespace std;
 struct Tutor* clone_array = new Tutor[100];
 struct Tutor* tutor_array = new Tutor[100];
 struct Staff* staff_array = new Staff[100];
-int array_size = 0;
+int tutor_array_size = 0;
 int staff_array_size = 0;
 
 void main_menu();
@@ -117,10 +117,10 @@ void main_menu() {
             login_menu();
         }
         else if (choice == 1) add_new_tutor();
-        //else if (choice == 2) display();
+        else if (choice == 2) display();
         else if (choice == 3) search();
         else if (choice == 4) sort();
-        //else if (choice == 5) modify();
+        else if (choice == 5) modify();
         else if (choice == 6) remove();
         else if (choice == 7) report();
         else cout << "Invalid input";

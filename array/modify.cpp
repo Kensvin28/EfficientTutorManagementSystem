@@ -1,12 +1,12 @@
 #include <iostream>
 #include <limits>
-#include "array.hpp"
 #include "data.hpp"
 #include "display.hpp"
 #include "search.hpp"
 
 using namespace std;
 extern struct Tutor* tutor_array;
+extern int tutor_array_size;
 
 void modify_phone(Tutor* tutor_array, int index){
     int phone;
@@ -23,12 +23,11 @@ void modify_address(Tutor* tutor_array, int index){
 }
 
 void modify(){
-    int tutor_ID, choice, index, array_size;
+    int tutor_ID, choice = 0, index = -1;
     do{
-        array_size = get_tutor_array_size();
         cout << "Input tutor ID of tutor to modify: ";
         cin >> tutor_ID;
-        search_by_tutor_id(tutor_array, 0, array_size-1, tutor_ID);
+        search_by_tutor_id(tutor_array, 0, tutor_array_size-1, tutor_ID);
         if(index == -1){
             cout << "Tutor is not registered in the database." << endl;
         }else{
