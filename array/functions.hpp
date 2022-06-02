@@ -9,7 +9,7 @@ void add_new_tutor();
 void search();
 void modify();
 void sort();
-// void report();
+void report();
 // void delete_tutor();
 void add_new_staff(int, string, int, string, string);
 

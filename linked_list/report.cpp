@@ -38,7 +38,7 @@ void generate_report() {
         }while(current != NULL);
 
     }else{
-        cout << "No report available for this week yet";
+        cout << "No report available for this week yet" << endl;
     }
 
     return;
@@ -47,8 +47,6 @@ void generate_report() {
 //report menu
 void report()
 {
-    string back;
-
     generate_report();
     system("pause");
 
