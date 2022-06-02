@@ -132,7 +132,7 @@ void create_dummy_records() {
     int tutor_ID = 1;
     string name = "Broddie";
     int date_joined = 20201206;
-    int date_terminated = NULL;
+    int date_terminated = 0;
     double hourly_rate = 53.33;
     string phone = "9649007418";
     string address = "602 Orin Drive";
@@ -148,7 +148,7 @@ void create_dummy_records() {
     tutor_ID = 2;
     name = "Broda";
     date_joined = 20201206;
-    date_terminated = NULL;
+    date_terminated = 0;
     hourly_rate = 53.33;
     phone = "9649007418";
     address = "602 Orin Drive";

@@ -1,6 +1,8 @@
 #ifndef FUNCTIONS_H
 #define FUNCTIONS_H
 
+#include "data.hpp"
+#include <string>
 void reg();
 bool login();
 void add_new_tutor();
@@ -10,6 +12,6 @@ void modify();
 void sort();
 void report();
 void delete_tutor();
-Staff* add_new_staff_node(int, string, int, string, string);
+Staff* add_new_staff_node(int, std::string, int, std::string, std::string);
 
 #endif
