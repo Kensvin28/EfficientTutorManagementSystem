@@ -70,14 +70,12 @@ void reg()
         getline(cin, staff_position);
         do {
             cin.clear();
-            // cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            cout << "Enter Centre Code (1-5): ";
+            cout << "Enter Centre Code: ";
             cin >> centre_code;
             if ((centre_code < 1 && centre_code > 5) || cin.fail()) {
                 cout << "Invalid input" << endl;
-                cout << "Enter Centre Code(1-5): ";
+                cout << "Enter Centre Code: ";
                 cin >> centre_code;
-                // cin.ignore(numeric_limits<streamsize>::max(), '\n');
             }
         } while ((centre_code < 1 && centre_code > 5) || cin.fail());
         cout << "Enter Password: ";
