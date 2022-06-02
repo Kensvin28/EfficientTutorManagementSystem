@@ -101,45 +101,40 @@ bool check_id(int tutor_id) {
     return 1;
 }
 
-bool check_date(string date_joined, string date_terminated)
-{
-        string temp;
+// bool check_date(string date_joined, string date_terminated)
+// {
+//     string temp;
 
-        temp = date_joined.substr(0,4);
-        int join_year = atoi(temp.c_str());
-        temp = date_joined.substr(5,2);
-        int join_month = atoi(temp.c_str());
-        temp = date_joined.substr(8,2);
-        int join_day = atoi(temp.c_str());
+//     temp = date_joined.substr(0,2);
+//     int join_year = atoi(temp.c_str());
+//     temp = date_joined.substr(5,2);
+//     int join_month = atoi(temp.c_str());
+//     temp = date_joined.substr(8,4);
+//     int join_day = atoi(temp.c_str());
 
-        temp = date_terminated.substr(0,4);
-        int term_year = atoi(temp.c_str());
-        temp = date_terminated.substr(5,2);
-        int term_month = atoi(temp.c_str());
-        temp = date_terminated.substr(8,2);
-        int term_day = atoi(temp.c_str());
+//     temp = date_terminated.substr(0,2);
+//     int term_year = atoi(temp.c_str());
+//     temp = date_terminated.substr(5,2);
+//     int term_month = atoi(temp.c_str());
+//     temp = date_terminated.substr(8,4);
+//     int term_day = atoi(temp.c_str());
 
-        //Terminated year is lesser than Joined Year
-        if(term_year >= join_year) 
-        {
-            if(term_month >= join_month)
-            {
-                if(term_day > join_day)
-                {
-                    return 1;
-                }else{
-                    return 0;
-                }
-            }else{
-                return 0;
-            }
-        }else{
-            return 0;
-        }
+//     if(term_year >= join_year) 
+//     {
+//         if(term_month >= join_month)
+//         {
+//             if(term_day > join_day)
+//             {
+//                 return 1;
+//             }
+//         }
+//     }
 
-}
+//     //Terminated year is lesser than Joined Year
+//     return 0;
+// }
 
- void add_new_tutor(){
+void add_new_tutor(){
     int tutor_ID, centre_code, subject_code, rating;
  	string name, date_joined, date_terminated,phone, address, centre_name, subject_name;
  	double hourly_rate;
@@ -174,18 +169,18 @@ bool check_date(string date_joined, string date_terminated)
         cout << "Date Terminated(dd/mm/yyyy): ";
         cin >> date_terminated;
 
-        valid = check_date(date_joined, date_terminated);
+        // valid = check_date(date_joined, date_terminated);
 
-        while(valid == 0 || cin.fail()){
-            cout << endl << "Terminated is less than Joined / Invalid Format" << endl << "Please Re-enter:";
-            cout << "Date Joined(dd/mm/yyyy): ";
-            cin >> date_joined;
+        // while(valid == 0 || cin.fail()){
+        //     cout << endl << "Terminated is less than Joined / Invalid Format" << endl << "Please Re-enter:" << endl;
+        //     cout << "Date Joined(dd/mm/yyyy): ";
+        //     cin >> date_joined;
 
-            cout << "Date Terminated(dd/mm/yyyy): ";
-            cin >> date_terminated;
+        //     cout << "Date Terminated(dd/mm/yyyy): ";
+        //     cin >> date_terminated;
 
-            valid = check_date(date_joined, date_terminated);
-        }
+        //     valid = check_date(date_joined, date_terminated);
+        // }
 
         cout << "Hourly Rate: RM";
         cin >> hourly_rate;
