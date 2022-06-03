@@ -28,6 +28,13 @@ void create_dummy_records() {
     string staff_password = "admin";
     add_new_staff(staff_id, staff_name, centre_code, staff_position, staff_password);
 
+    staff_id = 0;
+    staff_name = "HR Manager";
+    staff_position = "HR Manager";
+    centre_code = 1;
+    staff_password = "hr";
+    add_new_staff(staff_id, staff_name, centre_code, staff_position, staff_password);
+
     int tutor_ID = 1;
     string name = "Broddie";
     string date_joined = "01/01/2000";

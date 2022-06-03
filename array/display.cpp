@@ -21,6 +21,12 @@ void display_sorted(Tutor* tutor_array) {
 	}
 }
 
+void display_summary(Tutor* tutor_array) {
+	for (int i = 0; i < tutor_array_size; i++) {
+		cout << "| " << tutor_array[i].tutor_ID << "| " << tutor_array[i].name << "| " << tutor_array[i].centre_name << "| " << tutor_array[i].subject_name << "| " << tutor_array[i].rating << "| " << endl;
+	}
+}
+
 void display(){
 	int index = -1, choice = 0;
 
@@ -30,7 +36,7 @@ void display(){
 		cout << "Display";
 		display_separator();
 		cout << endl;
-		display_sorted(tutor_array);
+		display_summary(tutor_array);
 		cout << endl;
 		cout << "Input the index of a tutor record to view more or input 0 to go back to the main menu:  ";
 		cin >> index;

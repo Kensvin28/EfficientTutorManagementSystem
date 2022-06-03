@@ -2,20 +2,37 @@
  #include <limits>
  #include "data.hpp"
  #include "display.hpp"
+#include "search.hpp"
 
  using namespace std;
 extern struct Tutor* tutor_array;
 extern struct Tutor* clone_array;
 extern struct Staff current_logged_in;
-extern int linked_list_size;
+extern int tutor_array_size;
 
+void shift(Tutor* input_array, int position) {
+    for (int i = position; i < tutor_array_size - 1; ++i) {
+        input_array[i] = input_array[++i];
+    }
+    tutor_array_size--;
+}
 
-void delete_tutor(int tutor_ID){
-    
+void delete_tutor(int tutor_ID) {
+    int position;
+    if (tutor_array_size != 0) {
+        position = search_by_tutor_id(tutor_array, 0, tutor_array_size - 1, tutor_ID);
+        cout << "Tutor with ID " << tutor_array[position].tutor_ID << " is deleted" << endl;
+        shift(tutor_array, position);
+    }
 }
 
  void remove()
  {
+     system("cls");
+     display_separator();
+     cout << "Search Tutor";
+     display_separator();
+     cout << endl;
      int tutor_ID;
      int choice;
      do{
