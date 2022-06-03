@@ -142,8 +142,6 @@ int login_checker(int staff_id, string staff_password)
             current_ptr = current_ptr->prev;
         }while(current_ptr != NULL);
     }
-
-    // cout << "User ID not found" << endl;
     return 0;
 }
 
@@ -156,12 +154,6 @@ bool login()
 
     while(flag == 0)
     {
-        // system("CLS");
-        // display_separator();
-        // cout << " eXcel Tuition Centre ";
-        // display_separator();
-        // cout << endl;
-
         cout << "Staff Login" << endl;
         display_separator();
         cout << endl;
