@@ -15,6 +15,13 @@ void create_new_tutor(int tutor_ID, string name, string date_joined, string date
     tutor_array[tutor_array_size].date_joined = date_joined;
     tutor_array[tutor_array_size].date_terminated = date_terminated;
     tutor_array[tutor_array_size].hourly_rate = hourly_rate;
+    tutor_array[tutor_array_size].phone = phone;
+    tutor_array[tutor_array_size].address = address;
+    tutor_array[tutor_array_size].centre_code = centre_code;
+    tutor_array[tutor_array_size].centre_name = centre_name;
+    tutor_array[tutor_array_size].subject_code = subject_code;
+    tutor_array[tutor_array_size].subject_name = subject_name;
+    tutor_array[tutor_array_size].rating = rating;
     tutor_array_size++;
 }
 

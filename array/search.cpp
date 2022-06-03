@@ -17,7 +17,7 @@ int search_by_tutor_id(Tutor* input_array, int low, int high, int id){
         //if found
         if (input_array[middle].tutor_ID == id) return middle;
         //if id is lower, call recursive function and search lower
-        else if (input_array[middle].tutor_ID < id) return search_by_tutor_id(input_array, low, middle - 1, id);
+        else if (id < input_array[middle].tutor_ID) return search_by_tutor_id(input_array, low, middle - 1, id);
         //if id is higher, call recursive function and search higher
         else return search_by_tutor_id(input_array, middle + 1, high, id);
     }

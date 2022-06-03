@@ -25,7 +25,7 @@ void create_dummy_records() {
     string staff_name = "admin";
     string staff_position = "ADMIN";
     int centre_code = 1;
-    string staff_password = "qwer1234";
+    string staff_password = "admin";
     add_new_staff(staff_id, staff_name, centre_code, staff_position, staff_password);
 
     int tutor_ID = 1;

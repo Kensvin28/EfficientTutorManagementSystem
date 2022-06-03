@@ -9,7 +9,7 @@ extern struct Tutor* tutor_array;
 extern int tutor_array_size;
 
 void modify_phone(Tutor* tutor_array, int index){
-    int phone;
+    string phone;
     cout << "Insert new phone number: ";
     cin >> phone;
     tutor_array[index].phone = phone;

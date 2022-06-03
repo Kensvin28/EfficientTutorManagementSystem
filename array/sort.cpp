@@ -107,8 +107,8 @@ void quick_sort(Tutor* input_array, int low_index, int high_index, sort_by type)
 
 //get maximum
 int get_max(Tutor* input_array, int size){
-	int max = input_array[1].rating;
-	for(int i = 2; i <= size; i++){
+	int max = input_array[0].rating;
+	for(int i = 1; i <= size; i++){
 		if(input_array[i].rating > max){
 			max = input_array[i].rating;
 		}
@@ -119,52 +119,51 @@ int get_max(Tutor* input_array, int size){
 //count sort rating
 void count_sort(Tutor* input_array, int size){
 	int max = get_max(input_array, size);
-	int* count_array = new int[max + 1];
+	int* count_array{ new int[max+1] {} };
 	Tutor* output_array = new Tutor[size + 1];
 
 	//count the frequency for each rating level
 	for(int i = 1; i <= size; i++){
-		count_array[input_array[i].rating]++;
+		++count_array[input_array[i-1].rating];
 	}
 
 	//find cumulative frequency for each rating level
 	for(int i = 1; i <= max; i++){
-		count_array[i] = count_array[i] + count_array[i-1];
+		count_array[i] += count_array[i-1];
 	}
 
 	for(int i = size; i >= 1; i--){
 		//fill sorted output array
-		output_array[count_array[input_array[i].rating]] = input_array[i];
+		output_array[count_array[input_array[i-1].rating]] = input_array[i-1];
 		//reduce counter
-		count_array[input_array[i].rating]--;
+		count_array[input_array[i-1].rating]--;
 	}
 
 	//copy back to original array
-	for(int i = 1; i <= size; i++){
-		input_array[i] = output_array[i];
+	for(int i = 0; i < size; i++){
+		input_array[i] = output_array[i+1];
 	}
 
 	delete[] count_array;
 	delete[] output_array;
 }
 
-//can be combined into the display section
-void display_sorted(Tutor* input_array){
-
-}
-
 void sort() {
 	int choice;
 	do {
+		system("cls");
 		display_separator();
 		cout << "Sort and Display Tutors";
 		display_separator();
 		cout << endl;
-		cout << "1. Sort by ID";
-		cout << "2. Sort by Hourly Rate";
-		cout << "3. Sort by Rating";
-		cout << "0. Return";
-		cin >> choice;
+		do {
+			cout << "1. Sort by ID" << endl;
+			cout << "2. Sort by Hourly Rate" << endl;
+			cout << "3. Sort by Rating" << endl;
+			cout << "0. Return" << endl;
+			cout << "Choice: ";
+			cin >> choice;
+		} while (choice < 0 && choice > 3 || cin.fail());
 
 		 //copy array
         for(int i = 0; i < tutor_array_size; i++){
@@ -179,12 +178,14 @@ void sort() {
 			display_sorted(clone_array);
 		}
 		else if (choice == 3) {
-			count_sort(clone_array, tutor_array_size - 1);
+			count_sort(clone_array, tutor_array_size);
 			display_sorted(clone_array);
 		}
 		else if (choice != 0) {
 			cout << "Invalid input!";
 			choice = 0;
 		}
-	} while (choice <= 0 && choice >= 3);
+		cout << "Press enter to continue...";
+		cin.get();
+	} while (choice >= 0 && choice <= 3 && cin.get() != '\n');
 }
