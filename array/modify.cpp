@@ -27,12 +27,10 @@ void modify(){
     do{
         cout << "Input tutor ID of tutor to modify: ";
         cin >> tutor_ID;
-        search_by_tutor_id(tutor_array, 0, tutor_array_size-1, tutor_ID);
+        index = search_by_tutor_id(tutor_array, 0, tutor_array_size-1, tutor_ID);
         if(index == -1){
             cout << "Tutor is not registered in the database." << endl;
         }else{
-            cout << "Record found:";
-            display_detailed(tutor_array, index);
             system("cls");
                 cin.clear();
                 display_separator();

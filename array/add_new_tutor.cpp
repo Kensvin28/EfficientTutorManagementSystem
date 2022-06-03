@@ -24,9 +24,11 @@ bool check_id(int tutor_id){
     int index = search_by_tutor_id(tutor_array, 0, tutor_array_size-1, tutor_id);
     if(index == -1){
         //id can be used
+        cout << "ID is used" << endl;
         return 1;
-    }else{
+    } else {
         //id cannot be used
+        cout << "ID is used" << endl;
         return 0;
     }
 }

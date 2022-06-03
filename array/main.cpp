@@ -97,6 +97,7 @@ void main_menu() {
             logged_in = login();
         }
 
+        system("CLS");
         display_separator();
         cout << " eXcel Tuition Centre ";
         display_separator();

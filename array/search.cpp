@@ -21,7 +21,9 @@ int search_by_tutor_id(Tutor* input_array, int low, int high, int id){
         //if id is higher, call recursive function and search higher
         else return search_by_tutor_id(input_array, middle + 1, high, id);
     }
-    return -1;
+    else {
+        return -1;
+    }
 }
 
 int search_by_tutor_rating(Tutor* input_array, int low, int high, int rating){

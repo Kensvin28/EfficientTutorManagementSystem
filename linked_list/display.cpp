@@ -15,8 +15,8 @@ void display_detailed_current(Tutor* node){
 	cout << "| " << current->tutor_ID << "| " << current->name << "| " << current->date_joined << "| " + current->date_terminated << "| " << current->hourly_rate << "| " << current->phone <<
 		"| " << current->address << "| " << current->centre_code << "| " << current->centre_name << "| " << current->subject_code << "| " << current->subject_name << "| " << current->rating << "| " << endl;
 	current = current->next;
-	return;
 }
+
 void display_separator() {
 	cout << string(25, '=');
 }
