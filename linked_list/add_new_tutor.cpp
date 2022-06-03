@@ -169,15 +169,6 @@ void add_new_tutor(){
         cout << "Date Joined(dd/mm/yyyy): ";
         cin >> date_joined;
 
-        string temp;
-
-        temp = date_joined.substr(0,2);
-        int join_year = atoi(temp.c_str());
-        temp = date_joined.substr(3,2);
-        int join_month = atoi(temp.c_str());
-        temp = date_joined.substr(6,4);
-        int join_day = atoi(temp.c_str());
-
         cout << "Date Terminated(dd/mm/yyyy): ";
         cin >> date_terminated;
 
