@@ -28,11 +28,13 @@ void display(){
 	current = head;
 
 	while (true) {
+		system("cls");
 		display_separator();
 		cout << "Display";
 		display_separator();
 		cout << endl;
-		display_summary_from_beginning(current);
+		display_summary_from_beginning(head);
+		cout << endl;
 		cout << "Input the index of a tutor record to view more or input 0 to go back to the main menu:  ";
 		cin >> position;
 
@@ -62,6 +64,11 @@ void display(){
 		}
 
 		do {
+			system("cls");
+			display_separator();
+			cout << "Detailed Records";
+			display_separator();
+			cout << endl;
 			display_detailed_current(current);
 			if (current->prev != NULL) {
 				cout << "1. Previous record" << endl;
@@ -70,21 +77,22 @@ void display(){
 				cout << "2. Next record" << endl;
 			}
 			cout << "0. Return" << endl;
+			cout << "Choice: ";
+			cin >> choice;
 			cout << endl;
 
 			if (choice == 1) {
 				if (current->prev != NULL) {
 					current = current->prev;
-					display_detailed_current(current);
 				}
 				else {
 					cout << "Reached beginning of list already" << endl;
 				}
 			}
 			else if (choice == 2) {
-				if (current->prev != NULL) {
+				if (current->next != NULL) {
 					current = current->next;
-					display_detailed_current(current);
+					
 				}
 				else {
 					cout << "Reached end of list already" << endl;
@@ -93,8 +101,7 @@ void display(){
 			else if (choice != 0) {
 				cout << "Invalid input";
 			}
-			cin.get();
-		} while (cin.get()!='\n');
+		} while (choice != 0);
 	}
 }
 
