@@ -23,7 +23,6 @@ Staff* add_new_staff_node(int staff_id, string staff_name, int centre_code, stri
     new_node->next = NULL;
     new_node->prev = NULL;
 
-    staff_list_size++;
     return new_node;
 }
 
@@ -40,6 +39,7 @@ void insert_to_end(Staff* new_node)
         new_node->prev = staff_tail;
         staff_tail = new_node;
 	}
+    staff_list_size++;
 }
 
 //auto assign id

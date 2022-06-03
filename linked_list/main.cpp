@@ -84,7 +84,6 @@ void main_menu() {
     } while (true);
 }
 
-//TODO: remove temp insert node
 void insert_to_tutor_end(Tutor* new_node) {
     if (head == NULL)
     {
