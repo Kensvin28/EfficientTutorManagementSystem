@@ -98,10 +98,10 @@ void reg(){
 
 int login_checker(int staff_id, string staff_password)
 {
-    int index;
+    int index = -1;
     // int index = search_by_staff_id(staff_array, 0, staff_array_size - 1, staff_id);
     for(int i = 0; i < staff_array_size; i++){
-        if(staff_array[i].staff_id == staff_id);
+        if(staff_array[i].staff_id == staff_id)
         {
             index = i;
         }
@@ -149,8 +149,6 @@ bool login()
         cout << "Password: ";
         cin >> staff_password;
         flag = login_checker(staff_id, staff_password);
-        //TODO remove login override
-        // flag = 1;
         if (flag == 0)
         {
             cout << "Invalid Login Credentials. Please try again." << endl << endl;

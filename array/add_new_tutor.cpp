@@ -31,7 +31,7 @@ bool check_id(int tutor_id){
     int index = search_by_tutor_id(tutor_array, 0, tutor_array_size-1, tutor_id);
     if(index == -1){
         //id can be used
-        cout << "ID is used" << endl;
+        cout << "ID is available" << endl;
         return 1;
     } else {
         //id cannot be used
@@ -106,10 +106,15 @@ void add_new_tutor() {
         cout << "Date Joined(dd/mm/yyyy): ";
         cin >> date_joined;
 
-        cout << "Date Terminated(dd/mm/yyyy): ";
+        cout << "Date Terminated(dd/mm/yyyy) (put - if still active): ";
         cin >> date_terminated;
 
-        valid = check_date(date_joined, date_terminated);
+        if (date_terminated == "-") {
+            date_terminated = "";
+        }
+        else {
+            valid = check_date(date_joined, date_terminated);
+        }
 
         while(valid == 0 || cin.fail()){
             cout << endl << "Terminated is less than Joined / Invalid Format" << endl << "Please Re-enter:" << endl;
@@ -134,6 +139,10 @@ void add_new_tutor() {
 
         cout << "Centre Code: ";
         cin >> centre_code;
+
+        cout << "Centre Name: ";
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        getline(cin, centre_name);
 
         cout << "Subject Code: ";
         cin >> subject_code;

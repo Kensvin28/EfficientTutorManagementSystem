@@ -99,8 +99,8 @@ void quick_sort(Tutor* input_array, int low_index, int high_index, sort_by type)
 		if (low_index < left_position) {
 			quick_sort(input_array, low_index, high_index - 1, type);
 		}
-		if (high_index < left_position) {
-			quick_sort(input_array, low_index, high_index - 1, type);
+		if (high_index > left_position) {
+			quick_sort(input_array, low_index + 1, high_index, type);
 		}
 	}
 }
