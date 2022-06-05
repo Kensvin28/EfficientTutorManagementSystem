@@ -29,7 +29,7 @@ void generate_report() {
     //0 = Sunday, 1 = Monday, 2 = Tuesday, 3 = Wednesday, 4 = Thursday, 5 = Friday, 6 = Saturday
     if (day_calc == 0) 
     {
-        cout << "Today is Sunday, Printing Report...";
+        cout << "Today is Sunday, Printing Report..." << endl;
         for(int i = 0; i < array_size; i++)
         {
             display_detailed(tutor_array, i);

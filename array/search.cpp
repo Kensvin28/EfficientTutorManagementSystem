@@ -33,6 +33,7 @@ int search_by_tutor_rating(Tutor* input_array, int low, int high, int rating){
         //if found
         if (input_array[middle].rating == rating){
             index = middle;
+            break;
         }
         //if id is higher, call recursive function and search higher
         else if (rating < input_array[middle].rating){
@@ -119,7 +120,7 @@ void search(){
                 //binary search
                 int index = search_by_tutor_rating(clone_array, 0, tutor_array_size - 1, rating);
                 if (index == -1) {
-                    cout << "Tutor with rating " << rating << "is not found.";
+                    cout << "Tutor with rating " << rating << " is not found.";
                 } 
                 else {
                     print_tutor_by_rating(clone_array, rating, index);
