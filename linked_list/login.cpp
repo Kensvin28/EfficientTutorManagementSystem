@@ -4,6 +4,8 @@
 #include <limits>
 #include "display.hpp"
 #include "data.hpp"
+#include "search.hpp"
+
 extern int staff_list_size;
 extern struct Staff* staff_head;
 extern struct Staff* staff_tail;
@@ -51,7 +53,7 @@ int assign_id()
 //register function
 void reg()
 {
-    int i = 1, check = 0;
+    int i = 1, check = 0, pick_position;
     int staff_id, centre_code;
     string staff_name, staff_position, staff_password;
     staff_head = staff_tail = NULL;
@@ -64,18 +66,32 @@ void reg()
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
         cout << "Enter Staff Name: ";
         getline(cin, staff_name);
-        cout << "Enter Staff Position: ";
-        getline(cin, staff_position);
+        
+        cout << "---Available Position---" << endl;
+        cout << "1. HR Manager" << endl;
+        cout << "2. Admin" << endl;
+        do{
+            cin.clear();
+            cout << "Pick Staff Position: ";
+            cin >> pick_position;
+            if(pick_position == 1){
+                staff_position = "HR Manager";
+            }else if(pick_position == 2){
+                staff_position = "Admin";
+            }else{
+                cout << "Please pick valid staff position (1/2)!" << endl << endl;
+            }
+        }while(pick_position < 1 || pick_position > 2);
+
         do {
             cin.clear();
-            cout << "Enter Centre Code: ";
+            cout << "Enter Centre Code(1-5): ";
             cin >> centre_code;
-            if ((centre_code < 1 && centre_code > 5) || cin.fail()) {
-                cout << "Invalid input" << endl;
-                cout << "Enter Centre Code: ";
-                cin >> centre_code;
+            validate_number();
+            if (centre_code < 1 || centre_code > 5) {
+                cout << "Please enter valid centre code!" << endl << endl;
             }
-        } while ((centre_code < 1 && centre_code > 5) || cin.fail());
+        } while (centre_code < 1 || centre_code > 5);
         cout << "Enter Password: ";
         cin >> staff_password;
         //8 character or greater password validation
