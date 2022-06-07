@@ -4,6 +4,7 @@
 #include <limits>
 #include "display.hpp"
 #include "data.hpp"
+#include "search.hpp"
 extern struct Staff* clone_array;
 extern struct Staff* staff_array;
 extern int staff_array_size;
@@ -31,7 +32,7 @@ void add_new_staff(int staff_id, string staff_name, int centre_code, string staf
 //  }
 
 void reg(){
-    int choice = 1, i =0;
+    int choice = 1, i =0, pick_position;
     int staff_id, centre_code;
     string staff_name, staff_position, staff_password;
     cout << "\nStaff Registration" << endl;
@@ -43,20 +44,33 @@ void reg(){
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
         cout << "Enter Staff Name: ";
         getline(cin, staff_name);
-        cout << "Enter Staff Position: ";
-        getline(cin, staff_position);
+
+        cout << "---Available Position---" << endl;
+        cout << "1. HR Manager" << endl;
+        cout << "2. Admin" << endl;
+        do{
+            cin.clear();
+            cout << "Pick Staff Position: ";
+            cin >> pick_position;
+            if(pick_position == 1){
+                staff_position = "HR Manager";
+            }else if(pick_position == 2){
+                staff_position = "Admin";
+            }else{
+                cout << "Please pick valid staff position (1/2)!" << endl << endl;
+            }
+        }while(pick_position < 1 || pick_position > 2);
+        
         do {
             cin.clear();
-            // cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            cout << "Enter Centre Code (1-5): ";
+            cout << "Enter Centre Code(1-5): ";
             cin >> centre_code;
-            if ((centre_code < 1 && centre_code > 5) || cin.fail()) {
-                cout << "Invalid input" << endl;
-                cout << "Enter Centre Code(1-5): ";
-                cin >> centre_code;
-                // cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            validate_number();
+            if (centre_code < 1 || centre_code > 5) {
+                cout << "Please enter valid centre code!" << endl << endl;
             }
-        } while ((centre_code < 1 && centre_code > 5) || cin.fail());
+        } while (centre_code < 1 || centre_code > 5);
+        
         cout << "Enter Password: ";
         cin >> staff_password;
         //8 character or greater password validation
@@ -71,11 +85,12 @@ void reg(){
         };
 
         add_new_staff(staff_id, staff_name, centre_code, staff_position, staff_password);
-        cout << endl << staff_array_size << endl;
+        // cout << endl << staff_array_size << endl;
 
         cout << "\n" << staff_id << "| " << staff_name << "| " << centre_code << "| " << staff_position << "| " << staff_password << endl;
         cout << "Type 0 to end / other numbers to add more: ";
         cin >> i;
+        cout << endl;
         if(i == 0)
         {
             return;
