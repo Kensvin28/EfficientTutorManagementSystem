@@ -103,29 +103,24 @@ void add_new_tutor() {
         cout << "Name: ";
         getline(cin,name);
 
-        cout << "Date Joined(dd/mm/yyyy): ";
-        cin >> date_joined;
-
-        cout << "Date Terminated(dd/mm/yyyy) (put - if still active): ";
-        cin >> date_terminated;
-
-        if (date_terminated == "-") {
-            date_terminated = "";
-        }
-        else {
-            valid = check_date(date_joined, date_terminated);
-        }
-
-        while(valid == 0 || cin.fail()){
-            cout << endl << "Terminated is less than Joined / Invalid Format" << endl << "Please Re-enter:" << endl;
+        do{
             cout << "Date Joined(dd/mm/yyyy): ";
             cin >> date_joined;
 
-            cout << "Date Terminated(dd/mm/yyyy): ";
+            cout << "Date Terminated(dd/mm/yyyy) (put - if still active): ";
             cin >> date_terminated;
 
-            valid = check_date(date_joined, date_terminated);
-        }
+            if (date_terminated == "-") {
+                date_terminated = "";
+            }
+            else {
+                valid = check_date(date_joined, date_terminated);
+            }
+
+            if(valid == 0){
+                cout << "Terminated is less than Joined / Invalid Format" << endl << "Please Re-enter:" << endl << endl;
+            }
+        } while(valid == 0 || cin.fail());
 
         cout << "Hourly Rate: RM";
         cin >> hourly_rate;
@@ -137,8 +132,15 @@ void add_new_tutor() {
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
         getline(cin, address);
 
-        cout << "Centre Code: ";
-        cin >> centre_code;
+        do {
+            cin.clear();
+            cout << "Enter Centre Code(1-5): ";
+            cin >> centre_code;
+            validate_number();
+            if (centre_code < 1 || centre_code > 5) {
+                cout << "Please enter valid centre code!" << endl << endl;
+            }
+        } while (centre_code < 1 || centre_code > 5);
 
         cout << "Centre Name: ";
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
@@ -146,13 +148,20 @@ void add_new_tutor() {
 
         cout << "Subject Code: ";
         cin >> subject_code;
+        validate_number();
 
         cout << "Subject Name: ";
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
         getline(cin, subject_name);
 
-        cout << "Rating: ";
-        cin >> rating;
+        do{
+            cout << "Rating(1-5): ";
+            cin >> rating;
+            validate_number();
+            if(rating < 1 || rating > 5){
+                cout << "Please enter valid rating!" << endl << endl;
+            }
+        }while(rating < 1 || rating > 5);
 
         //validate
         if(tutor_ID == 0 || hourly_rate == 0 || centre_code == 0 || subject_code == 0 || rating == 0) {
