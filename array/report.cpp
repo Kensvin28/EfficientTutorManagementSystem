@@ -30,7 +30,7 @@ void generate_report() {
     if (day_calc == 0) 
     {
         cout << "Today is Sunday, Printing Report..." << endl;
-        for(int i = 0; i < array_size; i++)
+        for(int i = 0; i <= array_size; i++)
         {
             display_detailed(tutor_array, i);
         }
