@@ -13,13 +13,16 @@ void modify_phone(Tutor* tutor_array, int index){
     cout << "Insert new phone number: ";
     cin >> phone;
     tutor_array[index].phone = phone;
+    cout << endl;
 }
 
 void modify_address(Tutor* tutor_array, int index){
     string address;
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
     cout << "Insert new address: ";
-    cin >> address;
+    getline(cin,address);
     tutor_array[index].address = address;
+    cout << endl;
 }
 
 void modify(){
