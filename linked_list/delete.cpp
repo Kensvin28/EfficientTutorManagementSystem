@@ -1,4 +1,5 @@
- #include <iostream>
+#define _CRT_SECURE_NO_WARNINGS 
+#include <iostream>
  #include <limits>
  #include "data.hpp"
  #include "display.hpp"
@@ -20,7 +21,7 @@ void delete_tutor(int tutor_ID)
     }
     if (position == 1) 
     {
-        Tutor*current=head;
+        Tutor* current=head;
         if (head->next != NULL) {
             head=head->next;
             head->prev=NULL;
@@ -29,23 +30,21 @@ void delete_tutor(int tutor_ID)
             head = head->next;
         }
         
-        cout<<"Tutor record with the tutor ID: " << tutor_ID << " is deleted" << endl;
         delete(current);
         linked_list_size--;
 
     }
     else if (position == linked_list_size){
-        Tutor*current=tail;
+        Tutor* current=tail;
         tail=tail->prev;
         tail->next = NULL;
 
-        cout<<"Tutor record with the tutor ID: " << tutor_ID << " is deleted" << endl;
         delete(current);
         linked_list_size--;
     }
     else if(position <= linked_list_size/2)
     {
-        Tutor*current;
+        Tutor* current = head;
         int current_position;
         current= head->next;
         current_position =2;
@@ -55,7 +54,6 @@ void delete_tutor(int tutor_ID)
                 current->prev->next = current->next;
                 current->next->prev = current->prev;
 
-                cout<<"Tutor record with the tutor ID: " << tutor_ID << " is deleted" << endl;
                 linked_list_size = linked_list_size -1;
 
                 return;
@@ -66,7 +64,7 @@ void delete_tutor(int tutor_ID)
     }
     else
     {
-        Tutor*current;
+        Tutor*current = tail;
         int current_position;
         current=tail->prev;
         current_position = linked_list_size -1;
@@ -75,7 +73,7 @@ void delete_tutor(int tutor_ID)
             {
                 current->prev->next = current->next;
                 current->next->prev = current->prev;
-                cout<<"Tutor record with the tutor ID: " << tutor_ID << " is deleted" << endl;
+                
 
                 delete(current);
                 linked_list_size = linked_list_size -1;
@@ -89,6 +87,42 @@ void delete_tutor(int tutor_ID)
     }
 }
 
+void auto_delete() {
+    string temp;
+    time_t now = time(0);
+    tm* ltm = localtime(&now);
+    int d = ltm->tm_mday;
+    int m = ltm->tm_mon + 1;
+    int y = ltm->tm_year + 1900;
+
+    int term_day, term_month, term_year;
+    Tutor* current = head;
+    //string date_terminated;
+    while (current != NULL) {
+        //date_terminated = current->date_terminated;
+        if (current->date_terminated != "") {
+            temp = current->date_terminated.substr(0, 2);
+            term_day = atoi(temp.c_str());
+            temp = current->date_terminated.substr(3, 2);
+            term_month = atoi(temp.c_str());
+            temp = current->date_terminated.substr(6, 4);
+            term_year = atoi(temp.c_str());
+            if (m - term_month < 0) {
+                y--;
+                m += 12;
+            }
+            int duration = (y - term_year) * 12 + (m - term_month);
+            if (duration >= 6) {
+                Tutor* temp = current;
+                current = current->next;
+                delete_tutor(temp->tutor_ID);
+                continue;
+            }
+        }
+        current = current->next;
+    }
+}
+
  void remove()
  {
      int tutor_ID;
@@ -98,6 +132,7 @@ void delete_tutor(int tutor_ID)
             cout<<"Input the tutor ID that you want to delete: ";
             cin>>tutor_ID;
             delete_tutor(tutor_ID);
+            cout << "Tutor record with the tutor ID: " << tutor_ID << " is deleted" << endl;
         }
         else {
             cout<<"Only HR Manager is allowed to delete!"<<endl;

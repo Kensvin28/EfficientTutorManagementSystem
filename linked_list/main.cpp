@@ -2,6 +2,7 @@
 #include "display.hpp"
 #include "login.hpp"
 #include "add.hpp"
+#include "delete.hpp"
 #include <iostream>
 #include <string>
 using namespace std;
@@ -108,6 +109,14 @@ void create_dummy_records() {
     Staff* new_node = add_new_staff_node(staff_id, staff_name, centre_code, staff_position, staff_password);
     insert_to_end(new_node);
 
+    staff_id = 2;
+    staff_name = "HR Manager";
+    staff_position = "HR Manager";
+    centre_code = 1;
+    staff_password = "hr";
+    new_node = add_new_staff_node(staff_id, staff_name, centre_code, staff_position, staff_password);
+    insert_to_end(new_node);
+
     int tutor_ID = 1;
     string name = "Broddie";
     string date_joined = "01/01/2000";
@@ -139,10 +148,27 @@ void create_dummy_records() {
 
     t_new_node = create_new_tutor_node(tutor_ID, name, date_joined, date_terminated, hourly_rate, phone, address, centre_code, centre_name, subject_code, subject_name, rating);
     insert_to_tutor_end(t_new_node);
+
+    tutor_ID = 3;
+    name = "Term";
+    date_joined = "01/06/2002";
+    date_terminated = "07/12/2021";
+    hourly_rate = 53.33;
+    phone = "9649007418";
+    address = "602 Orin Drive";
+    centre_code = 101;
+    centre_name = "Bukit Jalil";
+    subject_code = 9;
+    subject_name = "Physics";
+    rating = 1;
+
+    t_new_node = create_new_tutor_node(tutor_ID, name, date_joined, date_terminated, hourly_rate, phone, address, centre_code, centre_name, subject_code, subject_name, rating);
+    insert_to_tutor_end(t_new_node);
 }
 
 int main() {
     create_dummy_records();
+    auto_delete();
     login_menu();
     return 0;
 }
