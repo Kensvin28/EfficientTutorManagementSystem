@@ -129,8 +129,15 @@ void add_new_tutor() {
             }
         } while(valid == 0 || cin.fail());
 
-        cout << "Hourly Rate: RM";
-        cin >> hourly_rate;
+        do {
+            cin.clear();
+            cout << "Hourly Rate(RM40-80): RM";
+            cin >> hourly_rate;
+            validate_number();
+            if (hourly_rate < 40 || hourly_rate > 80) {
+                cout << "Please enter valid hourly rate!" << endl << endl;
+            }
+        } while (hourly_rate < 40 || hourly_rate > 80);
 
         cout << "Phone: ";
         cin >> phone;
