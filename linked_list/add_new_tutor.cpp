@@ -121,11 +121,15 @@ bool check_date(string date_joined, string date_terminated)
     temp = date_terminated.substr(6,4);
     int term_year = atoi(temp.c_str());
 
-    if(term_year >= join_year) 
+    if(term_year > join_year) 
     {
-        if(term_month >= join_month)
+        return 1;
+    } else {
+        if(term_month > join_month)
         {
-            if(term_day > join_day)
+            return 1;
+        } else{
+             if(term_day > join_day)
             {
                 return 1;
             }else if (term_day == join_day){
