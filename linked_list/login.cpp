@@ -56,7 +56,6 @@ void reg()
     int i = 1, check = 0, pick_position;
     int staff_id, centre_code;
     string staff_name, staff_position, staff_password;
-    staff_head = staff_tail = NULL;
     cout << "\nStaff Registration" << endl;
     display_separator();
     cout << endl;

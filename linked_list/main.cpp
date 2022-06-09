@@ -100,6 +100,7 @@ void insert_to_tutor_end(Tutor* new_node) {
 }
 
 void create_dummy_records() {
+    staff_head = staff_tail = NULL;
 
     int staff_id = 1;
     string staff_name = "admin";
