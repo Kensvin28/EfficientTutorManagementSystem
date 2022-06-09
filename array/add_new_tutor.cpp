@@ -58,16 +58,23 @@ bool check_date(string date_joined, string date_terminated)
     temp = date_terminated.substr(6,4);
     int term_year = atoi(temp.c_str());
 
-    if(term_year >= join_year) 
+    if(term_year > join_year) 
     {
-        if(term_month >= join_month)
+        return 1;
+    } else {
+        if(term_month > join_month)
         {
-            if(term_day > join_day)
+            return 1;
+        } else{
+             if(term_day > join_day)
             {
                 return 1;
+            }else if (term_day == join_day){
+                return 0;
             }
         }
     }
+
 
     //Terminated year is lesser than Joined Year
     return 0;
@@ -122,8 +129,15 @@ void add_new_tutor() {
             }
         } while(valid == 0 || cin.fail());
 
-        cout << "Hourly Rate: RM";
-        cin >> hourly_rate;
+        do {
+            cin.clear();
+            cout << "Hourly Rate(RM40-80): RM";
+            cin >> hourly_rate;
+            validate_number();
+            if (hourly_rate < 40 || hourly_rate > 80) {
+                cout << "Please enter valid hourly rate!" << endl << endl;
+            }
+        } while (hourly_rate < 40 || hourly_rate > 80);
 
         cout << "Phone: ";
         cin >> phone;
