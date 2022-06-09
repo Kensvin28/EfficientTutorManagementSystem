@@ -27,17 +27,17 @@ void generate_report() {
     int day_calc = day_of_week(y, m, d);
     int array_size = tutor_array_size - 1;
     //0 = Sunday, 1 = Monday, 2 = Tuesday, 3 = Wednesday, 4 = Thursday, 5 = Friday, 6 = Saturday
-    if (day_calc == 0) 
-    {
+    //if (day_calc == 0) 
+    //{
         cout << "Today is Sunday, Printing Report..." << endl;
         for(int i = 0; i <= array_size; i++)
         {
             display_detailed(tutor_array, i);
         }
 
-    }else{
-        cout << "No report available for this week yet" << endl;
-    }
+    //}else{
+    //    cout << "No report available for this week yet" << endl;
+    //}
 
     return;
 }
