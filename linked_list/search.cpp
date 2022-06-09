@@ -17,8 +17,9 @@ int search_by_tutor_id(int tutor_id) {
     }
        
     //if tutor node is closer to head
+    int position;
     if (tutor_id <= tail->tutor_ID / 2) {
-        int position = 1;
+        position = 1;
         Tutor* current = head;
         while (current != NULL) {
             //display search result if match is found
@@ -33,7 +34,7 @@ int search_by_tutor_id(int tutor_id) {
     }
     else {
         Tutor* current = tail;
-        int position = linked_list_size;
+        position = linked_list_size;
         while (current != NULL) {
             //display search result if match is found
             if (current->tutor_ID == tutor_id) {
@@ -47,7 +48,9 @@ int search_by_tutor_id(int tutor_id) {
         
     }
     //ID not found
+    position = 0;
     cout << "Record with ID " << tutor_id << " is not found" << endl;
+    return position;
 }
 
 void search_by_tutor_rating(int rating) {    
