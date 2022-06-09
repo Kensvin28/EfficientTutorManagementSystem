@@ -10,7 +10,7 @@ extern int linked_list_size;
 void display_summary_from_beginning(Tutor* current) {
 	int index = 1;
 	while (current != NULL) {
-		cout << "| " << current->tutor_ID << "| " << current->name << "| " << current->centre_name << "| " << current->subject_name << "| " << current->rating << "| " << endl;
+		cout << index << ". | " << current->tutor_ID << "| " << current->name << "| " << current->centre_name << "| " << current->subject_name << "| " << current->rating << "| " << endl;
 		current = current->next;
 		index++;
 	}

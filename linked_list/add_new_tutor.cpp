@@ -62,8 +62,8 @@
                  } while (current != NULL);
              }
          }
-         linked_list_size++;
      }
+     linked_list_size++;
  }
 
 bool check_id(int tutor_id) {
@@ -121,14 +121,21 @@ bool check_date(string date_joined, string date_terminated)
     temp = date_terminated.substr(6,4);
     int term_year = atoi(temp.c_str());
 
-    if(term_year >= join_year) 
+    if (term_year > join_year)
     {
-        if(term_month >= join_month)
+        return 1;
+    }
+    else {
+        if (term_month > join_month)
         {
-            if(term_day > join_day)
+            return 1;
+        }
+        else {
+            if (term_day > join_day)
             {
                 return 1;
-            }else if (term_day == join_day){
+            }
+            else if (term_day == join_day) {
                 return 0;
             }
         }
@@ -187,9 +194,15 @@ void add_new_tutor(){
             }
         } while(valid == 0 || cin.fail());
 
-        cout << "Hourly Rate: RM";
-        cin >> hourly_rate;
-        validate_number();
+        do {
+            cin.clear();
+            cout << "Hourly Rate: RM";
+            cin >> hourly_rate;
+            validate_number();
+            if (hourly_rate < 40 || hourly_rate > 80) {
+                cout << "Please enter hourly rate between RM40-RM80!" << endl << endl;
+            }
+        } while (hourly_rate < 40 || hourly_rate > 80);
 
         cout << "Phone: ";
         cin >> phone;

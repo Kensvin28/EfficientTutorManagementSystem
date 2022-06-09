@@ -25,11 +25,11 @@ void generate_report() {
     
     int day_calc = day_of_week(y, m, d);
     //0 = Sunday, 1 = Monday, 2 = Tuesday, 3 = Wednesday, 4 = Thursday, 5 = Friday, 6 = Saturday
-    if (day_calc == 0) 
-    {
+    //if (day_calc == 0) 
+    //{
         Tutor* current = head;
+        cout << endl << "Today is Sunday, printing report" << endl;
         do{
-            cout << endl << "Today is Sunday, printing report" << endl;
             cout << "| " << current->tutor_ID << "| " << current->name << "| " << current->date_joined 
             << "| " + current->date_terminated << "| " << current->hourly_rate << "| " << current->phone << 
             "| " << current->address << "| " << current->centre_code << "| " << current->centre_name 
@@ -37,11 +37,9 @@ void generate_report() {
             current = current->next;
         }while(current != NULL);
 
-    }else{
-        cout << "No report available for this week yet" << endl;
-    }
-
-    return;
+    //}else{
+    //    cout << "No report available for this week yet" << endl;
+    //}
 }
 
 //report menu
