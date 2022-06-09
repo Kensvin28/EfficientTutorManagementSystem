@@ -28,8 +28,8 @@ void generate_report() {
     if (day_calc == 0) 
     {
         Tutor* current = head;
+        cout << endl << "Today is Sunday, printing report" << endl;
         do{
-            cout << endl << "Today is Sunday, printing report" << endl;
             cout << "| " << current->tutor_ID << "| " << current->name << "| " << current->date_joined 
             << "| " + current->date_terminated << "| " << current->hourly_rate << "| " << current->phone << 
             "| " << current->address << "| " << current->centre_code << "| " << current->centre_name 
