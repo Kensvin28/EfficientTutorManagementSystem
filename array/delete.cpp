@@ -1,6 +1,7 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include <limits>
+#include <ctime>
 #include "data.hpp"
 #include "display.hpp"
 #include "search.hpp"
@@ -56,7 +57,9 @@ void delete_tutor(int tutor_ID) {
     int position;
     if (tutor_array_size != 0) {
         position = search_by_tutor_id(tutor_array, 0, tutor_array_size - 1, tutor_ID);
-        cout << "Tutor with ID " << tutor_array[position].tutor_ID << " is deleted" << endl;
+        if (position != -1){
+            cout << "Tutor with ID " << tutor_array[position].tutor_ID << " is deleted" << endl;
+        }
         shift(tutor_array, position);
     }
 }

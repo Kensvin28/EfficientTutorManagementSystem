@@ -4,6 +4,7 @@
  #include "data.hpp"
  #include "display.hpp"
  #include "search.hpp"
+ #include <ctime>
 
  using namespace std;
  extern struct Tutor* head;
@@ -16,7 +17,7 @@ void delete_tutor(int tutor_ID)
     int position = search_by_tutor_id(tutor_ID);
 
     if (position == 0 || head == NULL)
-    {
+    {   
         return;
     }
     if (position == 1) 
@@ -27,18 +28,21 @@ void delete_tutor(int tutor_ID)
             head->prev=NULL;
         }
         else {
-            head = head->next;
+            head = NULL;
+            tail = NULL;
         }
-        
+
+        cout << "Tutor record with the tutor ID: " << tutor_ID << " is deleted" << endl;
         delete(current);
         linked_list_size--;
-
+        
     }
     else if (position == linked_list_size){
         Tutor* current=tail;
         tail=tail->prev;
         tail->next = NULL;
 
+        cout << "Tutor record with the tutor ID: " << tutor_ID << " is deleted" << endl;
         delete(current);
         linked_list_size--;
     }
@@ -64,7 +68,7 @@ void delete_tutor(int tutor_ID)
     }
     else
     {
-        Tutor*current = tail;
+        Tutor* current = tail;
         int current_position;
         current=tail->prev;
         current_position = linked_list_size -1;
@@ -74,7 +78,7 @@ void delete_tutor(int tutor_ID)
                 current->prev->next = current->next;
                 current->next->prev = current->prev;
                 
-
+                cout << "Tutor record with the tutor ID: " << tutor_ID << " is deleted" << endl;
                 delete(current);
                 linked_list_size = linked_list_size -1;
                 return;
@@ -132,7 +136,6 @@ void auto_delete() {
             cout<<"Input the tutor ID that you want to delete: ";
             cin>>tutor_ID;
             delete_tutor(tutor_ID);
-            cout << "Tutor record with the tutor ID: " << tutor_ID << " is deleted" << endl;
         }
         else {
             cout<<"Only HR Manager is allowed to delete!"<<endl;
