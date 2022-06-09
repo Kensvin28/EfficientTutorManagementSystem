@@ -1,6 +1,7 @@
 #include "data.hpp"
 #include "functions.hpp"
 #include "display.hpp"
+#include "delete.hpp"
 #include <iostream>
 using namespace std;
 
@@ -16,6 +17,7 @@ void create_dummy_records();
 
 int main(){
     create_dummy_records();
+    auto_delete();
     login_menu();
     return 0;
 }
@@ -54,6 +56,21 @@ void create_dummy_records() {
     name = "Broda";
     date_joined = "01/06/2002";
     date_terminated = "";
+    hourly_rate = 55;
+    phone = "9649007418";
+    address = "602 Orin Drive";
+    centre_code = 101;
+    centre_name = "Bukit Jalil";
+    subject_code = 9;
+    subject_name = "Physics";
+    rating = 1;
+
+    create_new_tutor(tutor_ID, name, date_joined, date_terminated, hourly_rate, phone, address, centre_code, centre_name, subject_code, subject_name, rating);
+
+    tutor_ID = 3;
+    name = "Term";
+    date_joined = "01/06/2002";
+    date_terminated = "07/12/2021";
     hourly_rate = 53.33;
     phone = "9649007418";
     address = "602 Orin Drive";
